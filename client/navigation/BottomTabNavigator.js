@@ -5,6 +5,9 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 
+import EmployerSignup from '../profiles/employer/EmployerSignup';
+import EmployerProfile from '../profiles/employer/EmployerProfile';
+
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
 
@@ -32,6 +35,22 @@ export default function BottomTabNavigator({ navigation, route }) {
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
         }}
       />
+      <BottomTab.Screen
+        name="EmployerSignUp"
+        component={EmployerSignup}
+        options={{
+          title: 'Employer Sign Up',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-person-add" />,
+        }}
+      />
+      <BottomTab.Screen
+        name="EmployerProfile"
+        component={EmployerProfile}
+        options={{
+          title: 'Employer Profile',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-people" />,
+        }}
+      />
     </BottomTab.Navigator>
   );
 }
@@ -44,5 +63,10 @@ function getHeaderTitle(route) {
       return 'How to get started';
     case 'Links':
       return 'Links to learn more';
+    case "EmployerSignUp":
+      return "Employer Sign Up";
+    case "EmployerProfile":
+      return "Employer Profile";
+    
   }
 }
