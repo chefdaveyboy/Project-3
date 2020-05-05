@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 8256,
-  "expoServerNgrokUrl": "https://83-cek.anonymous.client.exp.direct",
-  "packagerNgrokUrl": "https://packager.83-cek.anonymous.client.exp.direct",
-  "ngrokPid": 9824,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "webpackServerPort": null
 }
