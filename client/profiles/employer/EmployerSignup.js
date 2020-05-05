@@ -31,7 +31,7 @@ export default class EmployerSignUp extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#3366A4",
+        backgroundColor: "#8459CB",
         justifyContent: "center",
         alignItems: "center",
            
@@ -60,7 +60,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
         padding: 20,
         backgroundColor: "#59cbbd",
-        marginTop: 30    
+        marginTop: 30,
+        borderRadius: 10,    
     },
     btntext: {
         color: "#fff",
