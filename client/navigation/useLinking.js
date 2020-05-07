@@ -1,6 +1,6 @@
 import { useLinking } from '@react-navigation/native';
 import { Linking } from 'expo';
-import EmployerProfile from '../profiles/employer/EmployerProfile';
+
 
 export default function(containerRef) {
   return useLinking(containerRef, {
@@ -10,10 +10,11 @@ export default function(containerRef) {
         path: 'root',
         screens: {
           Home: 'home',
-          Links: 'links',
+          Employee2Profile: 'employee2profile',
           Settings: 'settings',
           EmployerSignUp: "employersignup",
-          EmployerProfile: "employerprofile"
+          EmployerProfile: "employerprofile",
+          EmployeeProfile: "employeeprofile"
         },
       },
     },

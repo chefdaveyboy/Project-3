@@ -1,33 +1,25 @@
 import React, { useState } from "react";
 import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
-import tempImage from "../../assets/images/Fergal.jpg";
+
 import { ScrollView } from 'react-native-gesture-handler';
 
 //Profile Components
 import ProfileHeader from "../../components/profile components/EmployeeProfileHeader";
-import EmployeeTabs from "../../components/profile components/EmployeeTabs";
+import Skills from "../../components/profile components/Skills";
 
 
-export default class EmployeeProfile extends React.Component {
+export default class Employee2Profile extends React.Component {
     render() {
       return (
             <ScrollView>
                 <ProfileHeader/>
                 <View style={styles.containerMiddle}>
-                    <TouchableOpacity style={styles.button1} >
-                        <Text style={styles.btntext}>Edit Profile</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.button2}>
-                        <Text style={styles.btntext}>Log Out</Text>
-                    </TouchableOpacity>
+                    
+                   
                 </View>
                 <View style={styles.containerBottom}>
-                    <EmployeeTabs onPress = {() => this.props.navigation.navigate("Employee2Profile")}/>
-                    <EmployeeTabs/>
-                    <EmployeeTabs/>
-                    <EmployeeTabs/>
-                    <EmployeeTabs/>
-                    <EmployeeTabs/>
+                    <Skills/>
+                    <Skills/>
                 </View>
             </ScrollView>
         
