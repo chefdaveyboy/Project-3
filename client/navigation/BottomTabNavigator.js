@@ -6,7 +6,10 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 
 import EmployerSignup from '../profiles/employer/EmployerSignup';
-import EmployerProfile from '../profiles/employer/EmployerProfile';
+import EmployerProfile from '../profiles/employer/EmployerProfile'
+
+import EmployeeProfile from "../profiles/employee/EmployeeProfile"
+import Employee2Profile from '../profiles/employee/Employee2Profile';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -28,11 +31,11 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
       />
       <BottomTab.Screen
-        name="Links"
-        component={LinksScreen}
+        name="Employee2Profile"
+        component={Employee2Profile}
         options={{
-          title: 'Resources',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+          title: 'Employee 2 Profile',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-paw" />,
         }}
       />
       <BottomTab.Screen
@@ -51,6 +54,14 @@ export default function BottomTabNavigator({ navigation, route }) {
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-people" />,
         }}
       />
+      <BottomTab.Screen
+        name="EmployeeProfile"
+        component={EmployeeProfile}
+        options={{
+          title: 'Employee Profile',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-person" />,
+        }}
+      />
     </BottomTab.Navigator>
   );
 }
@@ -61,12 +72,14 @@ function getHeaderTitle(route) {
   switch (routeName) {
     case 'Home':
       return 'How to get started';
-    case 'Links':
-      return 'Links to learn more';
+    case 'Employee2Profile':
+      return 'Employee 2 Profile';
     case "EmployerSignUp":
       return "Employer Sign Up";
     case "EmployerProfile":
       return "Employer Profile";
+    case "EmployeeProfile":
+      return "Employee Profile";
     
   }
 }

@@ -1,24 +1,18 @@
 import React, { useState } from "react";
 import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
-import tempImage from "../../assets/images/Fergal.jpg";
+
+import Rating from "../profile components/Rating";
 
 
-
-export default class EmployeeTabs extends React.Component {
+export default class Skills extends React.Component {
     render() {
       return (
             <View>
                 <View style={styles.container}>
-                <Image
-                source={tempImage}
-                style={styles.images}
-                />
-                <View style={styles.containerInner}>
-                    <Text style={styles.text}>Employee Name</Text>
-                    <Text style={styles.textSecond}>Role: Role</Text>
-                </View>
-                <TouchableOpacity style={styles.ratings} >
-                    <Text style={styles.btntxt}>View Profile</Text>
+                <Text style={styles.text}>Skill</Text>
+                <Rating />
+                <TouchableOpacity style={styles.ratings}>
+                    <Text style={styles.btntxt}>Submit Rating</Text>
                 </TouchableOpacity>
                 </View>
                 
@@ -38,7 +32,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: "#BBBBBB",
         borderRadius: 10,
-        marginBottom: 15,
+        marginTop: 15,
         
            
     },
@@ -65,7 +59,7 @@ const styles = StyleSheet.create({
         marginTop: 15,
         width: 50,
         height: 50,
-        borderRadius: 5,  
+        borderRadius: 25,  
 
     },
     ratings: {
