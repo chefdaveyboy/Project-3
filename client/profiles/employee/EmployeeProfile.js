@@ -4,8 +4,8 @@ import tempImage from "../../assets/images/Fergal.jpg";
 import { ScrollView } from 'react-native-gesture-handler';
 
 //Profile Components
-import ProfileHeader from "../../app/components/profile components/EmployeeProfileHeader";
-import EmployeeTabs from "../../app/components/profile components/EmployeeTabs";
+import ProfileHeader from "../../components/profile components/EmployeeProfileHeader";
+import EmployeeTabs from "../../components/profile components/EmployeeTabs";
 
 
 export default class EmployeeProfile extends React.Component {

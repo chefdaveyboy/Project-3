@@ -4,8 +4,8 @@ import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "reac
 import { ScrollView } from 'react-native-gesture-handler';
 
 //Profile Components
-import ProfileHeader from "../../app/components/profile components/EmployeeProfileHeader";
-import Skills from "../../app/components/profile components/Skills";
+import ProfileHeader from "../../components/profile components/EmployeeProfileHeader";
+import Skills from "../../components/profile components/Skills";
 
 
 export default class Employee2Profile extends React.Component {

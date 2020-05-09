@@ -2,10 +2,9 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createAppContainer, createSwitchNavigator} from 'react-navigation';
 
-import TabBarIcon from '../app/components/TabBarIcon';
+import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
-import Register from '../app/scenes/auth/Login'
 
 import EmployerSignup from '../profiles/employer/EmployerSignup';
 import EmployerProfile from '../profiles/employer/EmployerProfile'
@@ -14,11 +13,11 @@ import EmployeeProfile from "../profiles/employee/EmployeeProfile"
 import Employee2Profile from '../profiles/employee/Employee2Profile';
 
 //IMPORT ROUTES
-import AuthStack from "../app/routes/auth";
-import HomeStack from "../app/routes/home";
+import AuthStack from "../routes/auth";
+import HomeStack from "../routes/home";
 
-import AuthLoading from "../app/scenes/auth/AuthLoading";
-import AuthProvider from "../app/providers/auth";
+import AuthLoading from "../scenes/auth/AuthLoading";
+import AuthProvider from "../providers/auth";
 
 const AppStack = createSwitchNavigator(
   {
