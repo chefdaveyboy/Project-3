@@ -1,5 +1,6 @@
+import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import * as React from 'react';
+import { createAppContainer, createSwitchNavigator} from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
@@ -11,8 +12,26 @@ import EmployerProfile from '../profiles/employer/EmployerProfile'
 import EmployeeProfile from "../profiles/employee/EmployeeProfile"
 import Employee2Profile from '../profiles/employee/Employee2Profile';
 
+//IMPORT ROUTES
+import AuthStack from "../routes/auth";
+import HomeStack from "../routes/home";
+
+import AuthLoading from "../scenes/auth/AuthLoading";
+import AuthProvider from "../providers/auth";
+
+const AppStack = createSwitchNavigator(
+  {
+      Loading: AuthLoading,
+      Auth: AuthStack,
+      App: HomeStack
+  },
+  {initialRouteName: 'Loading'}
+);
+
+const Navigator = createAppContainer(AppStack)
+
 const BottomTab = createBottomTabNavigator();
-const INITIAL_ROUTE_NAME = 'Home';
+const INITIAL_ROUTE_NAME = 'Loading';
 
 export default function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
@@ -21,6 +40,9 @@ export default function BottomTabNavigator({ navigation, route }) {
   navigation.setOptions({ headerTitle: getHeaderTitle(route) });
 
   return (
+
+    <AuthProvider>
+      <Navigator/>
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
         name="Home"
@@ -63,6 +85,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
       />
     </BottomTab.Navigator>
+    </AuthProvider>
   );
 }
 
