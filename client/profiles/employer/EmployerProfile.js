@@ -4,8 +4,8 @@ import tempImage from "../../assets/images/robot-prod.png";
 import { ScrollView } from 'react-native-gesture-handler';
 
 //Profile Components
-import ProfileHeader from "../../components/profile components/ProfileHeader";
-import EmployeeTabs from "../../components/profile components/EmployeeTabs";
+import ProfileHeader from "../../app/components/profile components/ProfileHeader";
+import EmployeeTabs from "../../app/components/profile components/EmployeeTabs";
 
 const invited = 0;
 const joined = 0;

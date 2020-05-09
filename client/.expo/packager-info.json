@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 25042,
+  "expoServerNgrokUrl": "https://zf-v8z.anonymous.client.exp.direct",
+  "packagerNgrokUrl": "https://packager.zf-v8z.anonymous.client.exp.direct",
+  "ngrokPid": 25071,
   "webpackServerPort": null
 }

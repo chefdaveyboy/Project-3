@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { MonoText } from '../components/StyledText';
+import { MonoText } from '../app/components/StyledText';
 
 export default function HomeScreen() {
   return (
