@@ -7,8 +7,22 @@ import { ScrollView } from 'react-native-gesture-handler';
 import ProfileHeader from "../../components/profile components/EmployeeProfileHeader";
 import EmployeeTabs from "../../components/profile components/EmployeeTabs";
 
+const viewProfBtn = EmployeeTabs.TouchableOpacity;
 
 export default class EmployeeProfile extends React.Component {
+    constructor(props) {
+        super(props);
+        // this.state ={
+        //     navigate: () => this.navigation.navigate("Employee2Profile")
+        // }
+    }
+
+    // EmployeeButton = () => {
+    //     this.setState({
+
+    //     })
+    // }
+
     render() {
       return (
             <ScrollView>
@@ -22,7 +36,7 @@ export default class EmployeeProfile extends React.Component {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.containerBottom}>
-                    <EmployeeTabs onPress = {() => this.props.navigation.navigate("Employee2Profile")}/>
+                    <EmployeeTabs onPress={() => this.navigation.navigate("Employee2Profile")}/>
                     <EmployeeTabs/>
                     <EmployeeTabs/>
                     <EmployeeTabs/>

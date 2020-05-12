@@ -8,20 +8,21 @@ class Rating extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            starCount: 0
+            starCount: 0,
+            
         };
     }
 
     onStarRatingPress(rating) {
         this.setState({
-            starCount: rating
+            starCount: rating,
         });
     }
 
     render() {
         return (
             <StarRating
-            disabled={false}
+            disabled={this.props.disabled}
             maxStars={5}
             rating={this.state.starCount}
             selectedStar={(rating) => this.onStarRatingPress(rating)}

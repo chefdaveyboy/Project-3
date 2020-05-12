@@ -7,8 +7,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import ProfileHeader from "../../components/profile components/ProfileHeader";
 import EmployeeTabs from "../../components/profile components/EmployeeTabs";
 
-const invited = 0;
-const joined = 0;
+
 
 export default class EmployerProfile extends React.Component {
     render() {
