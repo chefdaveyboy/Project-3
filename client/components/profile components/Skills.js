@@ -3,15 +3,29 @@ import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "reac
 
 import Rating from "../profile components/Rating";
 
+const stars = Rating;
 
 export default class Skills extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            disabled: false
+        }
+    }
+
+    isPressed = () => {
+        this.setState({ disabled: true })
+        
+    }
+
     render() {
       return (
             <View>
                 <View style={styles.container}>
                 <Text style={styles.text}>Skill</Text>
-                <Rating />
-                <TouchableOpacity style={styles.ratings}>
+                <Rating disabled={this.state.disabled}/>
+                <TouchableOpacity style={this.state.disabled ? styles.disabledRatings : styles.ratings} disabled={this.state.disabled} onPress={this.isPressed}>
                     <Text style={styles.btntxt}>Submit Rating</Text>
                 </TouchableOpacity>
                 </View>
@@ -68,6 +82,15 @@ const styles = StyleSheet.create({
         width: 100,
         padding: 5,
         backgroundColor: "#CB5967",
+        borderRadius: 10,
+        margin: 10
+    },
+    disabledRatings: {
+        alignItems: "center",
+        justifyContent: "center",
+        width: 100,
+        padding: 5,
+        backgroundColor: "#BBBBBB",
         borderRadius: 10,
         margin: 10
     },

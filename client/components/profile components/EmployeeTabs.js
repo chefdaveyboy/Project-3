@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
 import tempImage from "../../assets/images/Fergal.jpg";
+import { withNavigation } from "react-navigation";
 
 
+class EmployeeTabs extends React.Component {
+    constructor(props) {
+        super(props);
+    };
 
-export default class EmployeeTabs extends React.Component {
     render() {
       return (
             <View>
@@ -17,7 +21,7 @@ export default class EmployeeTabs extends React.Component {
                     <Text style={styles.text}>Employee Name</Text>
                     <Text style={styles.textSecond}>Role: Role</Text>
                 </View>
-                <TouchableOpacity style={styles.ratings} >
+                <TouchableOpacity style={styles.ratings} onPress = {() => this.props.navigation.navigate("Employee2Profile")}>
                     <Text style={styles.btntxt}>View Profile</Text>
                 </TouchableOpacity>
                 </View>
@@ -81,3 +85,5 @@ const styles = StyleSheet.create({
         color: "#fff"
     }
 })
+
+export default withNavigation(EmployeeTabs);
