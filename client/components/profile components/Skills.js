@@ -3,7 +3,7 @@ import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "reac
 
 import Rating from "../profile components/Rating";
 
-const stars = Rating;
+
 
 export default class Skills extends React.Component {
 
