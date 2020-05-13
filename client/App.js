@@ -5,13 +5,31 @@ import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
-
+import { createAppContainer, createSwitchNavigator} from 'react-navigation';
+import { AuthContext, useAuth } from "./providers/auth";
 
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import useLinking from './navigation/useLinking';
 
-const Stack = createStackNavigator();
+//IMPORT ROUTES
+import AuthStack from "./routes/auth";
+import HomeStack from "./routes/home";
+
+import AuthLoading from "./scenes/auth/AuthLoading";
+import AuthProvider from "./providers/auth";
+
+const AppStack = createSwitchNavigator(
+  {
+      Loading: AuthLoading,
+      Auth: AuthStack,
+      App: HomeStack
+  },
+  {initialRouteName: 'Loading'}
+);
+
+const Navigator = createAppContainer(AppStack)
+
+
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
@@ -51,11 +69,7 @@ export default function App(props) {
     return (
       <View style={styles.container}>
         {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
-          <Stack.Navigator>
-            <Stack.Screen name="Root" component={BottomTabNavigator} />
-          </Stack.Navigator>
-        </NavigationContainer>
+        <AuthProvider><Navigator/></AuthProvider>
       </View>
     );
   }

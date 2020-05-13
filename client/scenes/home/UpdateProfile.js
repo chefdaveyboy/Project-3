@@ -6,8 +6,33 @@ import { useAuth } from "../../providers/auth";
 
 import Form from 'react-native-basic-form';
 import {ErrorText} from "../../auth-components/Shared";
+import { NavigationContainer } from '@react-navigation/native';
+
+//delete if not working
+
+
+import { SplashScreen } from 'expo';
+import * as Font from 'expo-font';
+import { Ionicons } from '@expo/vector-icons';
+
+import { createStackNavigator } from '@react-navigation/stack';
+import { createAppContainer, createSwitchNavigator} from 'react-navigation';
+
+//----------//
+
+
+import BottomTabNavigator from '../../navigation/BottomTabNavigator';
+import useLinking from '../../navigation/useLinking';
+
+const Stack = createStackNavigator();
 
 export default function UpdateProfile (props) {
+    //delete if not working
+    
+    const [initialNavigationState] = React.useState();
+    const containerRef = React.useRef();
+    
+
     const {navigation} = props;
 
     //1 - DECLARE VARIABLES
@@ -38,14 +63,24 @@ export default function UpdateProfile (props) {
     }
 
     let formProps = {title: "Submit", fields, onSubmit, loading };
+
+
+    
     return (
         <View style={{flex: 1, paddingHorizontal: 16, backgroundColor:"#fff"}}>
             <View style={{flex:1}}>
                 <ErrorText error={error}/>
-                <Form {...formProps}/>
+                {/* Delete if not working  */}
+                <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
+                    <Stack.Navigator>
+                        <Stack.Screen name="Root" component={BottomTabNavigator} />
+                    </Stack.Navigator>
+                </NavigationContainer>
+                {/* -------- */}
             </View>
         </View>
     );
+
 };
 
 UpdateProfile.navigationOptions = ({}) => {

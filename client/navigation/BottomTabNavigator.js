@@ -12,23 +12,13 @@ import EmployerProfile from '../profiles/employer/EmployerProfile'
 import EmployeeProfile from "../profiles/employee/EmployeeProfile"
 import Employee2Profile from '../profiles/employee/Employee2Profile';
 
-//IMPORT ROUTES
-import AuthStack from "../routes/auth";
-import HomeStack from "../routes/home";
 
-import AuthLoading from "../scenes/auth/AuthLoading";
-import AuthProvider from "../providers/auth";
 
-const AppStack = createSwitchNavigator(
-  {
-      Loading: AuthLoading,
-      Auth: AuthStack,
-      App: HomeStack
-  },
-  {initialRouteName: 'Loading'}
-);
 
-const Navigator = createAppContainer(AppStack)
+
+
+
+
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Loading';
@@ -41,8 +31,7 @@ export default function BottomTabNavigator({ navigation, route }) {
 
   return (
 
-    <AuthProvider>
-      <Navigator/>
+    
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
         name="Home"
@@ -52,6 +41,7 @@ export default function BottomTabNavigator({ navigation, route }) {
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
         }}
       />
+      
       <BottomTab.Screen
         name="Employee2Profile"
         component={Employee2Profile}
@@ -85,7 +75,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
       />
     </BottomTab.Navigator>
-    </AuthProvider>
+    
   );
 }
 

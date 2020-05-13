@@ -8,7 +8,7 @@ class Rating extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            starCount: 0,
+            starCount: 3,
             
         };
     }
