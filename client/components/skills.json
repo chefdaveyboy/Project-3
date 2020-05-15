@@ -1,0 +1,24 @@
+[
+    {
+        "id": 0,
+        "skillset": "Front End",
+        "skills": ["HTML", "CSS", "JavaScript"]
+        
+    },
+    {
+        "id": 1,
+        "skillset": "Back End",
+        "skills": ["MySQL", "Mongoose", "Node.js", "Express"]
+    },
+    {
+        "id": 2,
+        "skillset": "JavaScript Libraries",
+        "skills": ["Angular", "React", "React Native", "Vue"]
+    },
+    {
+        "id": 3,
+        "skillset": "Soft Skills",
+        "skills": ["Leadership", "Teamwork", "Awesomeness"]
+    }
+    
+]
