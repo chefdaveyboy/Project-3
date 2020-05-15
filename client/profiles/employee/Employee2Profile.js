@@ -5,8 +5,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 //Profile Components
 import ProfileHeader from "../../components/profile components/EmployeeProfileHeader";
-import Skills from "../../components/profile components/Skills";
-
+import SkillSet from "../../components/profile components/SkillSet";
+import SkillsContainer from "../../components/profile components/skillsContainer";
 
 export default class Employee2Profile extends React.Component {
     render() {
@@ -17,11 +17,7 @@ export default class Employee2Profile extends React.Component {
                     
                    
                 </View>
-                <View style={styles.containerBottom}>
-                    <Skills skill={"HTML"}/>
-                    <Skills skill={"CSS"}/>
-                    <Skills skill={"JavaScript"}/>
-                </View>
+                <SkillSet/>
             </ScrollView>
         
     )  
