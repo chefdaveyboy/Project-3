@@ -13,7 +13,8 @@ export default class ProfileHeader extends React.Component {
                 source={tempImage}
                 style={styles.images}
                 />
-                <Text style={styles.header}>Fergal Covington III</Text>
+                <Text style={styles.header}>{this.props.name}</Text>
+                <Text style={styles.text2}>Role: {this.props.role}</Text>
                 </View>
             </View>
         
@@ -34,8 +35,14 @@ const styles = StyleSheet.create({
         fontSize: 24,
         color: "#fff",
         paddingBottom: 10,
-        marginBottom: 20,
+        marginBottom: 5,
         
+    },
+    text2: {
+        fontSize: 18,
+        color: "#A0CB59",
+        fontWeight: "900",
+        marginBottom: 20,
     },
     images: {
         

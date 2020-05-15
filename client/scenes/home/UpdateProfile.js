@@ -69,7 +69,7 @@ export default function UpdateProfile (props) {
     return (
         <View style={{flex: 1, paddingHorizontal: 16, backgroundColor:"#fff"}}>
             <View style={{flex:1}}>
-                <ErrorText error={error}/>
+                
                 {/* Delete if not working  */}
                 <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
                     <Stack.Navigator>
@@ -85,6 +85,6 @@ export default function UpdateProfile (props) {
 
 UpdateProfile.navigationOptions = ({}) => {
     return {
-        title: `Update Profile`
+        title: `Level Up Coding`
     }
 };

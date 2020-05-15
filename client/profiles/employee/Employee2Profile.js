@@ -12,14 +12,15 @@ export default class Employee2Profile extends React.Component {
     render() {
       return (
             <ScrollView>
-                <ProfileHeader/>
+                <ProfileHeader name="Fergal Covington III" role="Full Stack Developer"/>
                 <View style={styles.containerMiddle}>
                     
                    
                 </View>
                 <View style={styles.containerBottom}>
-                    <Skills/>
-                    <Skills/>
+                    <Skills skill={"HTML"}/>
+                    <Skills skill={"CSS"}/>
+                    <Skills skill={"JavaScript"}/>
                 </View>
             </ScrollView>
         

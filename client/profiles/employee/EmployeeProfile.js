@@ -26,7 +26,7 @@ export default class EmployeeProfile extends React.Component {
     render() {
       return (
             <ScrollView>
-                <ProfileHeader/>
+                <ProfileHeader name="Dave Koeller" role="Novice"/>
                 <View style={styles.containerMiddle}>
                     <TouchableOpacity style={styles.button1} >
                         <Text style={styles.btntext}>Edit Profile</Text>

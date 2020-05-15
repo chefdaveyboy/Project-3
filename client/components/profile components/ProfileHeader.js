@@ -14,6 +14,7 @@ export default class ProfileHeader extends React.Component {
                 style={styles.images}
                 />
                 <Text style={styles.header}>RachaelDave LLC</Text>
+         
                 </View>
             </View>
         
