@@ -2,7 +2,14 @@
     {
         "id": 0,
         "skillset": "Front End",
-        "skills": ["HTML", "CSS", "JavaScript"]
+        "skills": [{
+                "name": "HTML",
+                "stars": 5
+            },
+            {
+
+            }
+        ]
         
         
     },
