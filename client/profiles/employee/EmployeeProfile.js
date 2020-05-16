@@ -3,27 +3,28 @@ import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "reac
 import tempImage from "../../assets/images/Fergal.jpg";
 import { ScrollView } from 'react-native-gesture-handler';
 
+import { useAuth } from "../../providers/auth";
+import { Login } from "../../scenes/auth/Login";
 //Profile Components
 import ProfileHeader from "../../components/profile components/EmployeeProfileHeader";
 import EmployeeTabs from "../../components/profile components/EmployeeTabs";
 
 const viewProfBtn = EmployeeTabs.TouchableOpacity;
 
-export default class EmployeeProfile extends React.Component {
-    constructor(props) {
-        super(props);
-        // this.state ={
-        //     navigate: () => this.navigation.navigate("Employee2Profile")
-        // }
-    }
 
+
+export default function EmployeeProfile(props)  {
+    const {navigate} = props.navigation;
+    const {handleLogout} = useAuth();
+
+    
     // EmployeeButton = () => {
     //     this.setState({
 
     //     })
     // }
 
-    render() {
+    
       return (
             <ScrollView>
                 <ProfileHeader name="Dave Koeller" role="Novice"/>
@@ -31,7 +32,10 @@ export default class EmployeeProfile extends React.Component {
                     <TouchableOpacity style={styles.button1} >
                         <Text style={styles.btntext}>Edit Profile</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button2}>
+                    <TouchableOpacity style={styles.button2} onPress={() => {
+                        handleLogout();
+                        navigate('Auth');
+                    }}>
                         <Text style={styles.btntext}>Log Out</Text>
                     </TouchableOpacity>
                 </View>
@@ -48,7 +52,7 @@ export default class EmployeeProfile extends React.Component {
     )  
     }
     
-}
+
 
 const styles = StyleSheet.create({
     containerMiddle: {
