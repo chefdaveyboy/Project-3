@@ -16,6 +16,7 @@ class Rating extends Component {
     onStarRatingPress(rating) {
         this.setState({
             starCount: rating,
+            
         });
     }
 
