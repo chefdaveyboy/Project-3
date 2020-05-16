@@ -1,32 +1,52 @@
 import React, { useState } from "react";
 import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
-
+import {Header, ErrorText} from "../../auth-components/Shared";
 import Rating from "../profile components/Rating";
-
+import * as api from "../../services/rating"
 import { Ionicons } from '@expo/vector-icons';
+import { set } from 'mongoose';
 
 
-export default class Skills extends React.Component {
+export default function Skills(props) {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            disabled: false
+    const [disabled, setDisabled] = useState(false);
+    
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+
+    const isPressed = () => {
+        setDisabled(true)
+    }
+
+    const isPressedIn = async() => {
+        setLoading(true)
+
+        let userId = "5ebc8acb978ce80dabded5bc"
+        let data = {
+            rating: 6,
+            skillName: "API Building"
+        }
+
+        try {
+            console.log("made it here")
+            let response = await api.submitRating(userId, data);
+            console.log(data)
+            console.log(response)
+            console.log("made it here")
+            setLoading(false);
+        }  catch (error) {
+            setError(error.message);
+            setLoading(false)
         }
     }
 
-    isPressed = () => {
-        this.setState({ disabled: true })
-        
-    }
-
-    render() {
       return (
             <View style={styles.container}>
                 
-                <Text style={styles.text}>{this.props.skill}</Text>
-                <Rating style={styles.stars} disabled={this.state.disabled}/>
-                <TouchableOpacity style={this.state.disabled ? styles.disabledRatings : styles.ratings} disabled={this.state.disabled} onPress={this.isPressed}>
+                <Text style={styles.text}>{props.skill}</Text>
+                <Rating style={styles.stars} disabled={disabled}/>
+                <TouchableOpacity style={disabled ? styles.disabledRatings : styles.ratings} disabled={disabled} onPress={isPressed} onPressIn={isPressedIn}>
                     <Text style={styles.btntxt}><Ionicons name="md-star"/></Text>
                 </TouchableOpacity>
                 
@@ -34,9 +54,8 @@ export default class Skills extends React.Component {
             </View>
         
     )  
+
     }
-    
-}
 
 const styles = StyleSheet.create({
     container: {
@@ -49,10 +68,6 @@ const styles = StyleSheet.create({
         borderColor: "#BBBBBB",
         borderRadius: 10,
         marginTop: 15,
-        
-        
-        
-           
     },
     
     text: {
