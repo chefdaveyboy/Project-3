@@ -1,3 +1,4 @@
+//NOT THE PROBLEM
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import { createAppContainer, createSwitchNavigator} from 'react-navigation';
