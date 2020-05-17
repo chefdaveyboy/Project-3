@@ -22,16 +22,20 @@ export default function EmployeeProfile(props)  {
     async function initialize() {
         try {
             const user = await getAuthState()
-            setUser(user)
+
+            if (user) {
+                setUser(user)
+            } else {
+                initialize()
+            }
         } catch (error) {
-            setError(error)
-       
+            console.log(error)
         }
     };
     
       return (
             <ScrollView>
-                <ProfileHeader name={user.user ? `${user.user.firstName}  ${user.user.lastName}` : "firstname"} role={user.user ? user.user.jobRole : "baker"}/>
+                <ProfileHeader name={user.user ? `${user.user.firstName}  ${user.user.lastName}` : "firstname lastname"} role={user.user ? user.user.jobRole : "role"}/>
                 <View style={styles.containerBottom}>
                     <SkillContainer/>
                 </View>
