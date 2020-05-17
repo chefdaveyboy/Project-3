@@ -40,7 +40,6 @@ function AuthProvider(props) {
             let {token, user} = data;
             let data_ = [[USER_KEY, JSON.stringify(user)], [TOKEN_KEY, token]];
             await AsyncStorage.multiSet(data_);
-
             //AXIOS AUTHORIZATION HEADER
             axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
 
@@ -77,6 +76,20 @@ function AuthProvider(props) {
             throw new Error(error);
         }
     };
+
+    const getUser = async () => {
+        try {
+            await AsyncStorage.getItem(USER_KEY, (err, item) => {
+            console.log(JSON.parse(item))
+            let loggedInUser = JSON.parse(item)
+             console.log(loggedInUser.firstName)
+
+            return loggedInUser
+             });
+            } catch (error) {
+            throw new Error(error)
+            }
+        }
 
     const value = useMemo(() => {
         return {state, getAuthState, handleLogin, handleLogout, updateUser};
