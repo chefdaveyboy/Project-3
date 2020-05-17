@@ -4,7 +4,7 @@ import tempImage from "../../assets/images/Fergal.jpg";
 import { withNavigation } from "react-navigation";
 
 
-export default class EmployeeTabs extends React.Component {
+class EmployeeTabs extends React.Component {
     constructor(props) {
         super(props);
     };
@@ -32,6 +32,8 @@ export default class EmployeeTabs extends React.Component {
     }
     
 }
+
+export default withNavigation(EmployeeTabs);
 
 const styles = StyleSheet.create({
     container: {

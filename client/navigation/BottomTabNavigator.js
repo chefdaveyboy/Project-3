@@ -4,11 +4,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import { createAppContainer, createSwitchNavigator} from 'react-navigation';
 import TabBarIcon from '../components/TabBarIcon';
 
-import EmployerSignup from '../profiles/employer/EmployerSignup';
-import EmployerProfile from '../profiles/employer/EmployerProfile'
 
 import EmployeeProfile from "../profiles/employee/EmployeeProfile"
-import Employee2Profile from '../profiles/employee/Employee2Profile';
+import Colleagues from '../profiles/employee/Colleagues';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Loading';
@@ -34,29 +32,14 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       
       <BottomTab.Screen
-        name="Employee2Profile"
-        component={Employee2Profile}
+        name="Colleagues"
+        component={Colleagues}
         options={{
-          title: 'Employee 2 Profile',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-paw" />,
-        }}
-      />
-      <BottomTab.Screen
-        name="EmployerSignUp"
-        component={EmployerSignup}
-        options={{
-          title: 'Employer Sign Up',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-person-add" />,
-        }}
-      />
-      <BottomTab.Screen
-        name="EmployerProfile"
-        component={EmployerProfile}
-        options={{
-          title: 'Employer Profile',
+          title: 'People I Work With',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-people" />,
         }}
       />
+      
       
     </BottomTab.Navigator>
     
@@ -69,12 +52,9 @@ function getHeaderTitle(route) {
   switch (routeName) {
     case "EmployeeProfile":
       return "Employee Profile";
-    case 'Employee2Profile':
-      return 'Employee 2 Profile';
-    case "EmployerSignUp":
-      return "Employer Sign Up";
-    case "EmployerProfile":
-      return "Employer Profile";
+    case 'Colleagues':
+      return 'People I Work With';
+    
     
     
   }

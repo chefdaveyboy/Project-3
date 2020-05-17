@@ -13,34 +13,18 @@ const viewProfBtn = EmployeeTabs.TouchableOpacity;
 
 
 
-export default function EmployeeProfile(props)  {
-    const {navigate} = props.navigation;
-    const {handleLogout} = useAuth();
+export default class EmployeeProfile extends React.Component {
+    
+
+
 
     
-    // EmployeeButton = () => {
-    //     this.setState({
-
-    //     })
-    // }
-
-    
-      return (
-            <ScrollView>
+      render() {
+          return (
+              <ScrollView>
                 <ProfileHeader name="Dave Koeller" role="Novice"/>
-                <View style={styles.containerMiddle}>
-                    <TouchableOpacity style={styles.button1} >
-                        <Text style={styles.btntext}>Edit Profile</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.button2} onPress={() => {
-                        handleLogout();
-                        navigate('Auth');
-                    }}>
-                        <Text style={styles.btntext}>Log Out</Text>
-                    </TouchableOpacity>
-                </View>
                 <View style={styles.containerBottom}>
-                    <EmployeeTabs onPress={() => this.navigation.navigate("Employee2Profile")}/>
+                    <EmployeeTabs navigation={this.props.navigation}/>
                     <EmployeeTabs/>
                     <EmployeeTabs/>
                     <EmployeeTabs/>
@@ -48,21 +32,19 @@ export default function EmployeeProfile(props)  {
                     <EmployeeTabs/>
                 </View>
             </ScrollView>
+          )
+      }
+            
         
-    )  
+    
     }
     
 
 
 const styles = StyleSheet.create({
-    containerMiddle: {
-        
-        backgroundColor: "#fff",
-        flexDirection: "row",
-        justifyContent: "space-between"
-    },
+    
     containerBottom: {
-        
+        marginTop: 20,
         backgroundColor: "#fff",
         alignItems: "center",
     },
@@ -91,26 +73,6 @@ const styles = StyleSheet.create({
         color: "#fff",
         borderBottomColor: "#f8f8f8",
         borderBottomWidth: 1
-        
-    },
-    button1: {
-        width: 150,
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 20,
-        backgroundColor: "#59cbbd",
-        borderRadius: 10,
-        margin: 20
-        
-    },
-    button2: {
-        width: 150,
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 20,
-        backgroundColor: "#A0CB59",
-        borderRadius: 10,
-        margin: 20
         
     },
     btntext: {

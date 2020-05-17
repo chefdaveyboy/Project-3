@@ -3,8 +3,9 @@ import StarRating from "react-native-star-rating";
 import { Component } from "react";
 import { View, StyleSheet} from "react-native";
 
-class Rating extends Component {
 
+class Rating extends Component {
+    
     constructor(props) {
         super(props);
         this.state = {

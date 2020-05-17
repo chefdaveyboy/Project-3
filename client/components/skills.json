@@ -4,10 +4,18 @@
         "skillset": "Front End",
         "skills": [{
                 "name": "HTML",
-                "stars": 5
+                "stars": 5,
+                "disabled": false
             },
             {
-
+                "name": "CSS",
+                "stars": 4,
+                "disabled": false
+            },
+            {
+                "name": "JavaScript",
+                "stars": 2,
+                "disabled": false
             }
         ]
         
@@ -16,19 +24,84 @@
     {
         "id": 1,
         "skillset": "Back End",
-        "skills": ["MySQL", "Mongoose", "Node.js", "Express"]
+        "skills": [{
+            "name": "MySQL",
+            "stars": 3,
+            "disabled": false
+        },
+        {
+            "name": "Mongoose",
+            "stars": 2,
+            "disabled": false
+        },
+        {
+            "name": "Node.js",
+            "stars": 4,
+            "disabled": false
+        },
+        {
+            "name": "Express",
+            "stars": 4,
+            "disabled": false
+        }
+    ]
+        
+        
+        
+        
         
     },
     {
         "id": 2,
         "skillset": "JavaScript Libraries",
-        "skills": ["Angular", "React", "React Native", "Vue"]
+        "skills": [{
+            "name": "Angular",
+            "stars": 1,
+            "disabled": false
+        },
+        {
+            "name": "React",
+            "stars": 3,
+            "disabled": false
+        },
+        {
+            "name": "React Native",
+            "stars": 2,
+            "disabled": false
+        },
+        {
+            "name": "Vue",
+            "stars": 1,
+            "disabled": false
+        }]
+        
+        
         
     },
     {
         "id": 3,
         "skillset": "Soft Skills",
-        "skills": ["Leadership", "Teamwork", "Awesomeness"]
+        "skills": [{
+            "name": "Leadership",
+            "stars": 4,
+            "disabled": false
+        },
+        {
+            "name": "Teamwork",
+            "stars": 4,
+            "disabled": false
+        },
+        {
+            "name": "Awesomeness",
+            "stars": 5,
+            "disabled": false
+        }
+        ]
+        
+        
+        
+        
+       
     }
     
 ]
