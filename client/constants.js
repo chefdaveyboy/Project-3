@@ -1,7 +1,7 @@
 import React from 'react';
 
 //API URL
-export const API_URL = 'http://192.168.0.2:3000/api';
+export const API_URL = 'https://authentication-api-luc.herokuapp.com/api';
 
 //API End Points
 export const REGISTER = `${API_URL}/auth/register`;

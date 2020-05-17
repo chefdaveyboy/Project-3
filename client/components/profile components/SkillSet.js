@@ -9,7 +9,7 @@ import SkillsContainer from "./skillsContainer";
 
 
 
-export default class Employee2Profile extends React.Component {
+export default class SkillSet extends React.Component {
 
     constructor(props) {
         super(props);
@@ -76,13 +76,3 @@ export default class Employee2Profile extends React.Component {
 }
 
 
-
-
-const styles = StyleSheet.create({
-    
-    
-   
-    
-    
-
-}); 

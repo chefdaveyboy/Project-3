@@ -10,10 +10,7 @@ export default function(containerRef) {
         path: 'root',
         screens: {
           Home: 'home',
-          Employee2Profile: 'employee2profile',
-          Settings: 'settings',
-          EmployerSignUp: "employersignup",
-          EmployerProfile: "employerprofile",
+          Colleagues: 'colleagues',
           EmployeeProfile: "employeeprofile"
         },
       },

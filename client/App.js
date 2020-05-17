@@ -3,12 +3,11 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { SplashScreen } from 'expo';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createAppContainer, createSwitchNavigator} from 'react-navigation';
-import { AuthContext, useAuth } from "./providers/auth";
 
-import BottomTabNavigator from './navigation/BottomTabNavigator';
+import { createAppContainer, createSwitchNavigator} from 'react-navigation';
+
+
+
 import useLinking from './navigation/useLinking';
 
 //IMPORT ROUTES

@@ -7,7 +7,7 @@ import tempImage from "../../assets/images/Fergal.jpg";
 export default class ProfileHeader extends React.Component {
     render() {
       return (
-            <View>
+            
                 <View style={styles.container}>
                 <Image
                 source={tempImage}
@@ -16,7 +16,7 @@ export default class ProfileHeader extends React.Component {
                 <Text style={styles.header}>{this.props.name}</Text>
                 <Text style={styles.text2}>Role: {this.props.role}</Text>
                 </View>
-            </View>
+            
         
     )  
     }
@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
     container: {
         
         backgroundColor: "#8459CB",
-        // justifyContent: "center",
         alignItems: "center",
            
     },

@@ -3,33 +3,28 @@ import StarRating from "react-native-star-rating";
 import { Component } from "react";
 import { View, StyleSheet} from "react-native";
 
+const rating = 4;
 
 class Rating extends Component {
     
     constructor(props) {
         super(props);
         this.state = {
-            starCount: 2.5,
+            starCount: rating,
             
         };
     }
 
-    onStarRatingPress(rating) {
-        this.setState({
-            starCount: rating,
-            
-        });
-    }
 
     render() {
         return (
             <View style={styles.stars}>
             <StarRating
-            disabled={this.props.disabled}
+            disabled={true}
             maxStars={5}
             rating={this.state.starCount}
-            selectedStar={(rating) => this.onStarRatingPress(rating)}
             halfStarEnabled={true}
+            starSize={25}
             />
             </View>
         );
@@ -39,7 +34,7 @@ class Rating extends Component {
 
 const styles = StyleSheet.create({
     stars: {
-        flex: 3,
+        flex: 1,
         justifyContent: "center",
         alignItems: "center"
 

@@ -1,14 +1,15 @@
 
 import React, { useState } from "react";
 import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
-import {Header, ErrorText} from "../../auth-components/Shared";
 import Rating from "../profile components/Rating";
 import * as api from "../../services/rating"
 import { Ionicons } from '@expo/vector-icons';
-import { set } from 'mongoose';
+
+
 
 
 export default function Skills(props) {
+    
 
     const [disabled, setDisabled] = useState(false);
     
@@ -41,6 +42,7 @@ export default function Skills(props) {
             setLoading(false)
         }
     }
+    
 
     return (
         <View style={styles.container}>

@@ -1,29 +1,27 @@
 import React, { useState } from "react";
 import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
-import tempImage from "../../assets/images/robot-prod.png";
+import tempImage from "../../assets/images/Fergal.jpg";
 import { ScrollView } from 'react-native-gesture-handler';
 
 //Profile Components
-import ProfileHeader from "../../components/profile components/ProfileHeader";
+
 import EmployeeTabs from "../../components/profile components/EmployeeTabs";
 
 
 
-export default class EmployerProfile extends React.Component {
-    render() {
-      return (
-            <ScrollView>
-                <ProfileHeader/>
-                <View style={styles.containerMiddle}>
-                    <TouchableOpacity style={styles.button1} onPress = {() => this.props.navigation.navigate("EmployerSignUp")}>
-                        <Text style={styles.btntext}>Add Employees</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.button2}>
-                        <Text style={styles.btntext}>Edit Skills</Text>
-                    </TouchableOpacity>
-                </View>
+
+
+export default class Colleagues extends React.Component {
+    
+
+
+
+    
+      render() {
+          return (
+              <ScrollView>
                 <View style={styles.containerBottom}>
-                    <EmployeeTabs/>
+                    <EmployeeTabs navigation={this.props.navigation}/>
                     <EmployeeTabs/>
                     <EmployeeTabs/>
                     <EmployeeTabs/>
@@ -31,21 +29,19 @@ export default class EmployerProfile extends React.Component {
                     <EmployeeTabs/>
                 </View>
             </ScrollView>
+          )
+      }
+            
         
-    )  
+    
     }
     
-}
+
 
 const styles = StyleSheet.create({
-    containerMiddle: {
-        
-        backgroundColor: "#fff",
-        flexDirection: "row",
-        justifyContent: "space-between"
-    },
+    
     containerBottom: {
-        
+        marginTop: 20,
         backgroundColor: "#fff",
         alignItems: "center",
     },
@@ -74,26 +70,6 @@ const styles = StyleSheet.create({
         color: "#fff",
         borderBottomColor: "#f8f8f8",
         borderBottomWidth: 1
-        
-    },
-    button1: {
-        width: 150,
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 20,
-        backgroundColor: "#59cbbd",
-        borderRadius: 10,
-        margin: 20
-        
-    },
-    button2: {
-        width: 150,
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 20,
-        backgroundColor: "#A0CB59",
-        borderRadius: 10,
-        margin: 20
         
     },
     btntext: {
