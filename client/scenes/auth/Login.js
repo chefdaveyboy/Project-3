@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {View} from 'react-native';
 
 import * as api from "../../services/auth";
-import { useAuth } from "../../providers/auth";
+import { useAuth, getUser } from "../../providers/auth";
 
 import Form from 'react-native-basic-form';
 import CTA from "../../auth-components/CTA";
@@ -28,7 +28,6 @@ export default function Login(props) {
         try {
             let response = await api.login(state);
             await handleLogin(response);
-
             setLoading(false);
 
             //check if username is null

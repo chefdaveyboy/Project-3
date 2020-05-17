@@ -1,33 +1,36 @@
-import React, { useState } from "react";
-import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
-import tempImage from "../../assets/images/Fergal.jpg";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { ScrollView } from 'react-native-gesture-handler';
-
 import { useAuth } from "../../providers/auth";
-import { Login } from "../../scenes/auth/Login";
 //Profile Components
 import ProfileHeader from "../../components/profile components/EmployeeProfileHeader";
 import EmployeeTabs from "../../components/profile components/EmployeeTabs";
 
 const viewProfBtn = EmployeeTabs.TouchableOpacity;
 
-
-
 export default function EmployeeProfile(props)  {
     const {navigate} = props.navigation;
-    const {handleLogout} = useAuth();
+    const { handleLogout, getAuthState } = useAuth();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [user, setUser] = useState({});
+   
+    useEffect(() => {
+        initialize()
+    }, []);
 
-    
-    // EmployeeButton = () => {
-    //     this.setState({
+    async function initialize() {
+        try {
+            const user = await getAuthState()
+            setUser(user)
+        } catch (error) {
+            setError(error)
+        }
+    };
 
-    //     })
-    // }
-
-    
       return (
             <ScrollView>
-                <ProfileHeader name="Dave Koeller" role="Novice"/>
+                <ProfileHeader name={`${user.user.firstName} ${user.user.lastName}`} role={user.user.jobRole}/>
                 <View style={styles.containerMiddle}>
                     <TouchableOpacity style={styles.button1} >
                         <Text style={styles.btntext}>Edit Profile</Text>

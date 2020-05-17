@@ -19,7 +19,8 @@ export default function Register(props) {
         {name: 'firstName', label: 'First Name', required: true},
         {name: 'lastName', label: 'Last Name', required: true},
         {name: 'email', label: 'Email Address', required: true},
-        {name: 'password', label: 'Password', required: true, secure:true}
+        {name: 'password', label: 'Password', required: true, secure:true},
+        {name: 'jobRole', label: 'Job Title or Role', required: true}
     ];
 
     async function onSubmit(state) {
