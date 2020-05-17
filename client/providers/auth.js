@@ -77,20 +77,6 @@ function AuthProvider(props) {
         }
     };
 
-    const getUser = async () => {
-        try {
-            await AsyncStorage.getItem(USER_KEY, (err, item) => {
-            console.log(JSON.parse(item))
-            let loggedInUser = JSON.parse(item)
-             console.log(loggedInUser.firstName)
-
-            return loggedInUser
-             });
-            } catch (error) {
-            throw new Error(error)
-            }
-        }
-
     const value = useMemo(() => {
         return {state, getAuthState, handleLogin, handleLogout, updateUser};
     }, [state]);
