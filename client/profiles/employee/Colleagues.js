@@ -1,40 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
 import tempImage from "../../assets/images/Fergal.jpg";
 import { ScrollView } from 'react-native-gesture-handler';
+import { useAuth } from "../../providers/auth";
+import * as api from "../../services/auth";
 
 //Profile Components
 
 import EmployeeTabs from "../../components/profile components/EmployeeTabs";
 
-
-
-
-
-export default class Colleagues extends React.Component {
+export default function Colleagues(props) {
     
+    const { getUsers } = useAuth();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [users, setUsers] = useState({});
 
+    useEffect(() => {
+        initialize()
+    }, []);
 
+    async function initialize() {
+        try {
+            const users = await api.getUsers()
 
-    
-      render() {
+            if (users) {
+                console.log(users.users[0])
+                setUsers(users.users)
+            } else {
+                initialize()
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    };
           return (
               <ScrollView>
-                <View style={styles.containerBottom}>
-                    <EmployeeTabs navigation={this.props.navigation}/>
-                    <EmployeeTabs/>
-                    <EmployeeTabs/>
-                    <EmployeeTabs/>
-                    <EmployeeTabs/>
-                    <EmployeeTabs/>
+                  <View style={styles.containerBottom}>
+                      {users[0] ? users.map(user => (
+                    <EmployeeTabs name={user.firstName} lastName={user.lastName} role={user.jobRole}/>
+                    )) : <Text>No colleages available</Text> }
                 </View>
             </ScrollView>
           )
       }
-            
-        
-    
-    }
     
 
 

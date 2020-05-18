@@ -6,8 +6,6 @@ import * as api from "../../services/rating"
 import { Ionicons } from '@expo/vector-icons';
 
 
-
-
 export default function Skills(props) {
     
 
