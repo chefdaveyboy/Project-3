@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
 import tempImage from "../../assets/images/Fergal.jpg";
-import { withNavigation } from "react-navigation";
+import { withNavigation } from "react-navigation-stack";
+
 
 
 class EmployeeTabs extends React.Component {
@@ -21,7 +22,7 @@ class EmployeeTabs extends React.Component {
                     <Text style={styles.text}>Employee Name</Text>
                     <Text style={styles.textSecond}>Role: Role</Text>
                 </View>
-                <TouchableOpacity style={styles.ratings} onPress = {() => this.props.navigation.navigate("Employee2Profile")}>
+                <TouchableOpacity style={styles.ratings} onPress = {() => this.props.navigation.navigate("employeeProfile")}>
                     <Text style={styles.btntxt}>View Profile</Text>
                 </TouchableOpacity>
                 </View>

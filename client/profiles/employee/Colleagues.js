@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
 import tempImage from "../../assets/images/Fergal.jpg";
 import { ScrollView } from 'react-native-gesture-handler';
-
+import { createStackNavigator } from "react-navigation";
 //Profile Components
 
 import EmployeeTabs from "../../components/profile components/EmployeeTabs";
-
-
+import EmployeeProfile from "../employee/Employee2Profile";
+import StackNavigator from "../../navigation/StackNavigator";
 
 
 
@@ -21,7 +21,7 @@ export default class Colleagues extends React.Component {
           return (
               <ScrollView>
                 <View style={styles.containerBottom}>
-                    <EmployeeTabs navigation={this.props.navigation}/>
+                    <EmployeeTabs />
                     <EmployeeTabs/>
                     <EmployeeTabs/>
                     <EmployeeTabs/>
@@ -35,6 +35,7 @@ export default class Colleagues extends React.Component {
         
     
     }
+    
     
 
 

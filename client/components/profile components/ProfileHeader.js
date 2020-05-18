@@ -1,21 +1,21 @@
 import React, { useState } from "react";
-import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
+import { ImageBackground, StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
 import tempImage from "../../assets/images/robot-prod.png";
 
-
+import backgroundImage from "../../assets/images/p3-pattern.png"
 
 export default class ProfileHeader extends React.Component {
     render() {
       return (
             <View>
-                <View style={styles.container}>
+                <ImageBackground source={backgroundImage} style={styles.container}>
                 <Image
                 source={tempImage}
                 style={styles.images}
                 />
                 <Text style={styles.header}>RachaelDave LLC</Text>
          
-                </View>
+                </ImageBackground>
             </View>
         
     )  
@@ -25,11 +25,10 @@ export default class ProfileHeader extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        
-        backgroundColor: "#8459CB",
+        resizeMode: "cover",
         // justifyContent: "center",
         alignItems: "center",
-           
+        
     },
     header: {
         fontSize: 24,
