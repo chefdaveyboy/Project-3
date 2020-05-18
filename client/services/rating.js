@@ -28,9 +28,9 @@ export async function submitRating(userId, data) {
 
 export async function getAvgRatings(userId) {
     try {
-        let res = await axios.get(c.GET_AVG);
+        let res = await axios.get(c.GET_AVG, userId);
 
-        return res.data;
+        return console.log(res.data);
     } catch (e) {
         throw handler(e)
     }
