@@ -4,13 +4,21 @@ import tempImage from "../../assets/images/Fergal.jpg";
 import { ScrollView } from 'react-native-gesture-handler';
 import { useAuth } from "../../providers/auth";
 import * as api from "../../services/auth";
+import {NagivationContainer, NavigationEvents} from "react-navigation";
+import {createStackNavigator} from "react-navigation";
 
 //Profile Components
 
 import EmployeeTabs from "../../components/profile components/EmployeeTabs";
+import EmployeeProfile from "../../profiles/employee/Employee2Profile";
+
+
 
 export default function Colleagues(props) {
+
     
+    const { navigation } = props;
+    const { navigate } = navigation;
     const { getUsers } = useAuth();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -19,7 +27,7 @@ export default function Colleagues(props) {
     useEffect(() => {
         initialize()
     }, []);
-
+   
     async function initialize() {
         try {
             const users = await api.getUsers()
@@ -38,12 +46,30 @@ export default function Colleagues(props) {
               <ScrollView>
                   <View style={styles.containerBottom}>
                       {users[0] ? users.map(user => (
-                    <EmployeeTabs name={user.firstName} lastName={user.lastName} role={user.jobRole} key={user._id}/>
+                          <View key={user._id}>
+                          <View style={styles.container} >
+                          <Image
+                          source={tempImage}
+                          style={styles.images}
+                          />
+                          <View style={styles.containerInner}>
+                              <Text style={styles.text}>{user.firstName} {user.lastName}</Text>
+                              <Text style={styles.textSecond}>Role: {user.jobRole}</Text>
+                          </View>
+                          <TouchableOpacity style={styles.ratings} onPress={() => navigation.navigate("EmployeeProfile")}>
+                              <Text style={styles.btntxt}>View Profile</Text>
+                          </TouchableOpacity>
+                          </View>
+                          
+                      </View>
+                    // <EmployeeTabs key={user._id} name={user.firstName} lastName={user.lastName} role={user.jobRole}/>
                     )) : <Text>No colleages available</Text> }
                 </View>
             </ScrollView>
           )
       }
+    
+    
 
 
 const styles = StyleSheet.create({
@@ -94,5 +120,55 @@ const styles = StyleSheet.create({
         borderColor: "#879BB4",
         marginBottom: 30,   
 
+    },
+    container: {
+        backgroundColor: "#fff",
+        flexDirection: "row",
+        alignContent: "center",
+        justifyContent: "center",
+        borderWidth: 2,
+        borderColor: "#BBBBBB",
+        borderRadius: 10,
+        marginBottom: 15,
+        
+           
+    },
+    containerInner: {
+        flexDirection: "column",
+        justifyContent: "center"
+    },
+    text: {
+        fontSize: 20,
+        color: "#8459CB",
+        margin: 10,
+        marginBottom: 2
+        
+    },
+    textSecond: {
+       fontSize: 10,
+       color: "#59cbbd",
+       margin: 10,
+       marginTop: 2
+    },
+    images: {
+        
+        margin: 10,
+        marginTop: 15,
+        width: 50,
+        height: 50,
+        borderRadius: 5,  
+
+    },
+    ratings: {
+        alignItems: "center",
+        justifyContent: "center",
+        width: 100,
+        padding: 5,
+        backgroundColor: "#CB5967",
+        borderRadius: 10,
+        margin: 10
+    },
+    btntxt: {
+        color: "#fff"
     }
 })

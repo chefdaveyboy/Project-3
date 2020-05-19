@@ -7,9 +7,16 @@ import TabBarIcon from '../components/TabBarIcon';
 
 import EmployeeProfile from "../profiles/employee/EmployeeProfile"
 import Colleagues from '../profiles/employee/Colleagues';
+import Employee2Profile from "../profiles/employee/Employee2Profile";
+import { useLinkProps } from '@react-navigation/native';
+import { BottomTabBar } from "@react-navigation/bottom-tabs";
+
+
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Loading';
+
+
 
 export default function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
@@ -20,13 +27,16 @@ export default function BottomTabNavigator({ navigation, route }) {
   return (
 
     
-    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
+    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}
+    //This hides the 3rd bottom tab screen as a work around to nested stack nav
+    tabBar={props => <BottomTabBar {...props} state={{...props.state, routes: props.state.routes.slice(0,2)}}></BottomTabBar>}
+    >
       
       <BottomTab.Screen
-        name="EmployeeProfile"
+        name="MyProfile"
         component={EmployeeProfile}
         options={{
-          title: 'Employee Profile',
+          title: 'My Profile',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-person" />,
         }}
       />
@@ -39,6 +49,14 @@ export default function BottomTabNavigator({ navigation, route }) {
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-people" />,
         }}
       />
+      
+      {/* Hidden */}
+      <BottomTab.Screen
+        name="EmployeeProfile"
+        component={Employee2Profile}
+        />
+        
+      
       
       
     </BottomTab.Navigator>

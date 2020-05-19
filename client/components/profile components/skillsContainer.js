@@ -22,8 +22,8 @@ export default class Employee2Profile extends React.Component {
                     {this.state.SkillsJson[this.props.skillsdata].skills.map(data => (
                         
                         <Skills 
-                        key={data}
-                        skill={data}
+                        key={data.name}
+                        skill={data.name}
                         />
                     ))}
                         
