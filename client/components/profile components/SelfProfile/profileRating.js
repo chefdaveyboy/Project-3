@@ -5,32 +5,23 @@ import { View, StyleSheet} from "react-native";
 
 const rating = 4;
 
-class Rating extends Component {
-    
-    constructor(props) {
-        super(props);
-        this.state = {
-            starCount: rating,
-            
-        };
-    }
+
+const Rating = props => {
 
 
-    render() {
         return (
             <View style={styles.stars}>
             <StarRating
             disabled={true}
             maxStars={5}
-            rating={this.state.starCount}
+            rating={props.rating}
             halfStarEnabled={true}
             starSize={25}
+            key={props.keyName}
             />
             </View>
         );
     }
-
-}
 
 const styles = StyleSheet.create({
     stars: {

@@ -38,13 +38,12 @@ export default function Colleagues(props) {
               <ScrollView>
                   <View style={styles.containerBottom}>
                       {users[0] ? users.map(user => (
-                    <EmployeeTabs name={user.firstName} lastName={user.lastName} role={user.jobRole}/>
+                    <EmployeeTabs name={user.firstName} lastName={user.lastName} role={user.jobRole} key={user._id}/>
                     )) : <Text>No colleages available</Text> }
                 </View>
             </ScrollView>
           )
       }
-    
 
 
 const styles = StyleSheet.create({
