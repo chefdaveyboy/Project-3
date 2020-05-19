@@ -5,7 +5,7 @@ import { useAuth } from "../../providers/auth";
 import * as api from "../../services/rating";
 //Profile Components
 import ProfileHeader from "../../components/profile components/EmployeeProfileHeader";
-import SkillContainer from "../../components/profile components/SelfProfile/profileSkillContainer";
+import Skills from "../../components/profile components/SelfProfile/profileSkill";
 
 export default function EmployeeProfile(props)  {
     
@@ -29,9 +29,18 @@ export default function EmployeeProfile(props)  {
 
                 let userId = user.user._id
 
-                await api.getAvgRatings(userId)
+                console.log(userId)
 
-               console.log(response)
+            const ratings = await api.getAvgRatings(userId)
+
+            console.log(ratings)
+
+                if(ratings) {
+                    setRatings(ratings)
+                } else {
+                    setRatings({})
+                }
+          
 
             } else {
                 initialize()
@@ -45,18 +54,15 @@ export default function EmployeeProfile(props)  {
             <ScrollView>
                 <ProfileHeader name={user.user ? `${user.user.firstName}  ${user.user.lastName}` : "firstname lastname"} role={user.user ? user.user.jobRole : "role"}/>
                 <View style={styles.containerBottom}>
-                    {user.user ? user.user.ratings.map(rating => console.log(rating)) : <Text>No skills have been rated yet</Text>}
-                    <SkillContainer/>
+                    {ratings[0] ? ratings.map(rating => 
+                    <Skills number={rating.total} rating={rating.avgRat/2} skill={rating.skill} key={rating.skill} keyName={rating.skill}/>)
+                    : <Text>No ratings available yet.</Text>
+                    }
                 </View>
             </ScrollView>
           )
       }
             
-        
-    
-    
-    
-
 
 const styles = StyleSheet.create({
     

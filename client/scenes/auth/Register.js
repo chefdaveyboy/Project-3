@@ -4,8 +4,6 @@ import * as api from "../../services/auth";
 import Form, { TYPES } from 'react-native-basic-form';
 import CTA from "../../auth-components/CTA";
 import {Header, ErrorText} from "../../auth-components/Shared";
-import * as Permissions from 'expo-permissions';
-import ImageSelector from '../../auth-components/ImagePicker';
 
 export default function Register(props) {
     const {navigation} = props;
@@ -73,7 +71,6 @@ export default function Register(props) {
                         onPress={() => navigation.replace("Login")}
                         style={{marginTop: 50}}/>
                 </Form>
-                <ImageSelector/>
             </View>
         </View>
     );

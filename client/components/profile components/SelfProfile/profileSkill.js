@@ -3,19 +3,15 @@ import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "reac
 import Rating from "../SelfProfile/profileRating";
 
 
-
-
-
-
-export default function Skills(props) {
+const Skills = props => {
     
     
     return (
         <View style={styles.container}>
             
             <Text style={styles.text}>{props.skill}</Text>
-            <Rating/>
-            <Text style={styles.ratingNum}>Ratings: 0</Text>
+            <Rating rating={props.rating} key={props.keyName} keyName={props.keyName}/>
+            <Text style={styles.ratingNum}>Ratings: {props.number}</Text>
             
             
         </View>
@@ -23,6 +19,8 @@ export default function Skills(props) {
 )  
 
 }
+
+export default Skills
 
 const styles = StyleSheet.create({
 container: {

@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, View, Image} from 'react-native';
+import {Button, View, Image, Constants} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 
@@ -36,13 +36,14 @@ export default class ImageSelector extends React.Component {
       _pickImage = async () => {
         try {
           let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
             aspect: [4, 3],
             quality: 1,
           });
           if (!result.cancelled) {
-            this.setState({ image: result.uri });
+            this.setState(
+              { image: result.uri });
           }
     
           console.log(result);
