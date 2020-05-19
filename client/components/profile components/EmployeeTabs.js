@@ -5,12 +5,12 @@ import { withNavigation } from "react-navigation-stack";
 
 
 
-class EmployeeTabs extends React.Component {
-    constructor(props) {
-        super(props);
-    };
+const EmployeeTabs = props => {
+    // const {navigation} = props;
+    // const {navigate} = navigation;
+    const [user, setUser] = useState(undefined)
 
-    render() {
+    
       return (
             <View>
                 <View style={styles.container}>
@@ -19,10 +19,10 @@ class EmployeeTabs extends React.Component {
                 style={styles.images}
                 />
                 <View style={styles.containerInner}>
-                    <Text style={styles.text}>Employee Name</Text>
-                    <Text style={styles.textSecond}>Role: Role</Text>
+                    <Text style={styles.text}>{props.name} {props.lastName}</Text>
+                    <Text style={styles.textSecond}>Role: {props.role}</Text>
                 </View>
-                <TouchableOpacity style={styles.ratings} onPress = {() => this.props.navigation.navigate("employeeProfile")}>
+                <TouchableOpacity style={styles.ratings} >
                     <Text style={styles.btntxt}>View Profile</Text>
                 </TouchableOpacity>
                 </View>
@@ -31,10 +31,8 @@ class EmployeeTabs extends React.Component {
         
     )  
     }
-    
-}
 
-export default withNavigation(EmployeeTabs);
+export default EmployeeTabs;
 
 const styles = StyleSheet.create({
     container: {

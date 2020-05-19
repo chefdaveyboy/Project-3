@@ -45,10 +45,19 @@ export async function updateProfile(userId, data){
         for ( let key in data )
             form_data.append(key, data[key]);
 
-        let res = await axios.put(`${c.UPDATE_PROFILE}/${userId}`, form_data, options);
+        let res = await axios.put(`${c.USER}/${userId}`, form_data, options);
         return res.data;
     }catch (e) {
         throw handler(e);
+    }
+}
+
+export async function getUsers() {
+    try {
+            let res = await axios.get(c.USER)
+            return res.data;
+    } catch (e) {
+        throw handler(e)
     }
 }
 
