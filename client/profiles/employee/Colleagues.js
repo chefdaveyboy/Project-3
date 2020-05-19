@@ -46,8 +46,8 @@ export default function Colleagues(props) {
               <ScrollView>
                   <View style={styles.containerBottom}>
                       {users[0] ? users.map(user => (
-                          <View>
-                          <View style={styles.container}>
+                          <View key={user._id}>
+                          <View style={styles.container} >
                           <Image
                           source={tempImage}
                           style={styles.images}
