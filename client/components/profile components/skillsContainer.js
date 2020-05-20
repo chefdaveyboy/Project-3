@@ -16,11 +16,11 @@ export default class Employee2Profile extends React.Component {
     }
 
     render() {
+        
       return (
                 
                 <View style={styles.containerBottom}>
                     {this.state.SkillsJson[this.props.skillsdata].skills.map(data => (
-                        
                         <Skills 
                         key={data.name}
                         skill={data.name}
@@ -47,4 +47,4 @@ const styles = StyleSheet.create({
     
     
 
-}); 
+});

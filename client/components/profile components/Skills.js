@@ -8,7 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 export default function Skills(props) {
     
-
+    
     const [disabled, setDisabled] = useState(false);
     
     const [error, setError] = useState(null);
@@ -46,7 +46,15 @@ export default function Skills(props) {
         <View style={styles.container}>
             
             <Text style={styles.text}>{props.skill}</Text>
-            <Rating style={styles.stars} disabled={disabled}/>
+            <View style={styles.stars}>
+            <StarRating
+            disabled={state.disabled}
+            maxStars={5}
+            rating={state.starCount}
+            selectedStar={(rating) => this.onStarRatingPress(rating)}
+            halfStarEnabled={true}
+            />
+            </View>
             <TouchableOpacity style={disabled ? styles.disabledRatings : styles.ratings} disabled={disabled} onPress={isPressed} onPressIn={isPressedIn}>
                 <Text style={styles.btntxt}><Ionicons name="md-star"/></Text>
             </TouchableOpacity>

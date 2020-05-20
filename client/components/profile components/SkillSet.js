@@ -45,8 +45,7 @@ export default class SkillSet extends React.Component {
         data.push(start);
 
         let indexValue = this.getIndexValue();
-        console.log(this.state.text);
-        console.log(indexValue);
+
       return (
 
             <View style={{flex: 1}}>
@@ -71,8 +70,4 @@ export default class SkillSet extends React.Component {
         
     )  
     }
-
-    
 }
-
-
