@@ -23,7 +23,7 @@ const EmployeeTabs = props => {
                     <Text style={styles.textSecond}>Role: {props.role}</Text>
                 </View>
                 <TouchableOpacity style={styles.ratings} >
-                    <Text style={styles.btntxt}>View Profile</Text>
+                    <Text style={styles.btntxt}>Submit Rating</Text>
                 </TouchableOpacity>
                 </View>
                 

@@ -31,9 +31,9 @@ export default function Login(props) {
             setLoading(false);
 
             //check if username is null
-            let username = (response.user.username !== null);
-            if (username) navigate('App');
-            else navigation.replace('Username');
+            let id = (response.user._id !== null);
+            if (id) navigate('App');
+            else navigation.replace('Login');
         } catch (error) {
             setError(error.message);
             setLoading(false)

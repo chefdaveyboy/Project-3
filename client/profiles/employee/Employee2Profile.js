@@ -8,11 +8,12 @@ import ProfileHeader from "../../components/profile components/EmployeeProfileHe
 import SkillSet from "../../components/profile components/SkillSet";
 import SkillsContainer from "../../components/profile components/skillsContainer";
 
-export default class Employee2Profile extends React.Component {
-    render() {
+export default function Employee2Profile(props) {
+    let userInfo = props.route.params[0]
+
       return (
             <ScrollView>
-                <ProfileHeader name="Fergal Covington III" role="Full Stack Developer"/>
+                <ProfileHeader name={`${userInfo.firstName} ${userInfo.lastName}`} role={userInfo.jobRole}/>
                 <View style={styles.containerMiddle}>
                     
                    
@@ -21,10 +22,8 @@ export default class Employee2Profile extends React.Component {
             </ScrollView>
         
     )  
-    }
+      }
     
-}
-
 const styles = StyleSheet.create({
     containerMiddle: {
         

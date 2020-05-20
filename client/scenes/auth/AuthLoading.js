@@ -18,10 +18,10 @@ export default function AuthLoading(props) {
 
             if (user) {
                 //check if username exist
-                let username = !!(user.username);
+                let id = !!(user._id);
 
-                if (username) navigate('App');
-                else navigate('Auth', {}, StackActions.replace({ routeName: "Username" }))
+                if (id) navigate('App');
+                else navigate('Auth', {}, StackActions.replace({ routeName: "Login" }))
 
             } else navigate('Auth');
         } catch (e) {
