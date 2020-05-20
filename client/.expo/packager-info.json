@@ -1,10 +1,10 @@
 {
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 6789,
+  "packagerPid": 7863,
   "expoServerNgrokUrl": "https://f7-ww6.anonymous.client.exp.direct",
   "packagerNgrokUrl": "https://packager.f7-ww6.anonymous.client.exp.direct",
-  "ngrokPid": 6818,
+  "ngrokPid": 7903,
   "webpackServerPort": null,
   "devToolsPort": 19002
 }
