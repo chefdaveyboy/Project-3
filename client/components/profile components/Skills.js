@@ -1,22 +1,35 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
 import Rating from "../profile components/Rating";
 import * as api from "../../services/rating"
 import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from "../../providers/auth"; 
 import StarRating from "react-native-star-rating";
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function Skills(props) {
 
-    console.log(props.id, "these are our props")
+    let userId = props.id
     
     const {getAuthState} = useAuth()
     const [disabled, setDisabled] = useState(false);
-    
+    const [message, setMesssage] = useState(null)
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [starCount, setStarCount] = useState(2.5)
+
+    useFocusEffect(
+        React.useCallback(() => {
+            const reSetPage = () => {
+                setStarCount(2.5)
+                setMesssage(null)
+                setDisabled(false)
+            }
+            return() => reSetPage();}, [userId])
+        )
+
+
 
     const onStarRatingPress = (rating) => {
         setStarCount(rating)
@@ -42,13 +55,18 @@ export default function Skills(props) {
                     postedBy: postedBy
 
                 }
+                console.log(postedBy, "THIS IS POSTED BY")
 
         try {
             let response = await api.submitRating(userId, data);
             setLoading(false);
-            let message = response.message
 
-            return message
+
+            if (!response.pass) {
+                setMesssage("Already rated for this skill.")
+            } else {
+                setMesssage("Rating successfully added!")
+            }
 
         }  catch (error) {
             setError(error.message);
@@ -62,7 +80,7 @@ export default function Skills(props) {
             
             <Text style={styles.text}>{props.skill}</Text>
             <View style={styles.stars}>
-                {disabled ? <Text>{isPressedIn}</Text> : 
+                {disabled ? <Text>{message}</Text> : 
             <StarRating
             disabled={disabled}
             maxStars={5}
