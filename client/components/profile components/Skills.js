@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
 import Rating from "../profile components/Rating";
@@ -6,17 +5,31 @@ import * as api from "../../services/rating"
 import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from "../../providers/auth"; 
 import StarRating from "react-native-star-rating";
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function Skills(props) {
 
-    console.log(props.id, "these are our props")
+    let userId = props.id
     
     const {getAuthState} = useAuth()
     const [disabled, setDisabled] = useState(false);
-    
+    const [message, setMesssage] = useState(null)
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [starCount, setStarCount] = useState(2.5)
+
+
+    useFocusEffect(
+        React.useCallback(() => {
+            const reSetPage = () => {
+                setStarCount(2.5)
+                setMesssage(null)
+                setDisabled(false)
+            }
+            return() => reSetPage();}, [userId])
+        
+    )
+
 
     const onStarRatingPress = (rating) => {
         setStarCount(rating)
@@ -26,10 +39,6 @@ export default function Skills(props) {
         setDisabled(true)
     }
 
-    useEffect(() => {
-        setDisabled(false);
-    },[])
-    
     const isPressedIn = async() => {
         setLoading(true)
 
@@ -46,29 +55,32 @@ export default function Skills(props) {
                     postedBy: postedBy
 
                 }
-                console.log(postedBy);
+                console.log(postedBy, "THIS IS POSTED BY")
+
         try {
             let response = await api.submitRating(userId, data);
             setLoading(false);
-            let message = response.message
-            console.log(message);
-            msg.push(message);
-            console.log(msg[0]);
+
+
+            if (!response.pass) {
+                setMesssage("Already rated.")
+            } else {
+                setMesssage("Rating added!")
+            }
+
         }  catch (error) {
             setError(error.message);
             setLoading(false)
         }
     }
-}   
-    const msg =[];
-    const message = JSON.stringify(msg[0]);
+}
     
     return (
         <View style={styles.container}>
             
             <Text style={styles.text}>{props.skill}</Text>
             <View style={styles.stars}>
-                {disabled ? <Text style={styles.validation}>{message}</Text> : 
+                {disabled ? <Text>{message}</Text> : 
             <StarRating
             disabled={disabled}
             maxStars={5}
@@ -135,12 +147,6 @@ disabledRatings: {
     margin: 5,
     marginLeft: 30
 },
-validation: {
-    fontSize: 15,
-    flex: 3,
-    justifyContent: "center",
-    alignItems: "center"
-},
 btntxt: {
     color: "#fff"
 },
@@ -149,5 +155,6 @@ stars: {
     justifyContent: "center",
     alignItems: "center"
 
-}
+},
+
 })

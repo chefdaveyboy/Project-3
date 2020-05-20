@@ -35,7 +35,8 @@ export default function Login(props) {
             if (id) navigate('App');
             else navigation.replace('Login');
         } catch (error) {
-            setError(error.message);
+            setError(error);
+            console.log(error.message)
             setLoading(false)
         }
     }
