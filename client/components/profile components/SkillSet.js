@@ -59,7 +59,9 @@ export default class SkillSet extends React.Component {
                     
                     >
                     <View style={{flex: 1}}>
-                        <SkillsContainer skillsdata={indexValue} />
+                        <SkillsContainer skillsdata={indexValue} id={this.props.id}>
+                            {console.log(this.props.id, "THIS IS SKILLSET")}
+                            </SkillsContainer>
                      
                     </View>
                     

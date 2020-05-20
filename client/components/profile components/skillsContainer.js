@@ -19,11 +19,12 @@ export default class Employee2Profile extends React.Component {
       return (
                 
                 <View style={styles.containerBottom}>
-                    {this.state.SkillsJson[this.props.skillsdata].skills.map(data => (
+                    {console.log(this.props.id, "SKILLSCONTAINER"),this.state.SkillsJson[this.props.skillsdata].skills.map(data => (
                         
                         <Skills 
                         key={data.name}
                         skill={data.name}
+                        id={this.props.id}
                         />
                     ))}
                         

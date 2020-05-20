@@ -4,16 +4,23 @@ import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "reac
 import Rating from "../profile components/Rating";
 import * as api from "../../services/rating"
 import { Ionicons } from '@expo/vector-icons';
-
+import { useAuth } from "../../providers/auth"; 
+import StarRating from "react-native-star-rating";
 
 export default function Skills(props) {
-    
 
+    console.log(props.id, "these are our props")
+    
+    const {getAuthState} = useAuth()
     const [disabled, setDisabled] = useState(false);
     
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [starCount, setStarCount] = useState(2.5)
 
+    const onStarRatingPress = (rating) => {
+        setStarCount(rating)
+    }
 
     const isPressed = () => {
         setDisabled(true)
@@ -22,31 +29,49 @@ export default function Skills(props) {
     const isPressedIn = async() => {
         setLoading(true)
 
-        let userId = "5ec014a14a03ec259cbe18dd"
-        let data = 
-        {
-            rating: rating,
-            skillName: "API Building",
-            postedBy: "bob@bobby.com"
-        }
+        const user = await getAuthState()
 
-        console.log("____>",data, "_____>")
+            if (user.user) {
+                let postedBy = user.user._id
+               
+                let userId = props.id 
+
+                let data = {
+                    rating: starCount,
+                    skillName: props.skill,
+                    postedBy: postedBy
+
+                }
 
         try {
             let response = await api.submitRating(userId, data);
             setLoading(false);
+            let message = response.message
+
+            return message
+
         }  catch (error) {
             setError(error.message);
             setLoading(false)
         }
     }
+}
     
-
     return (
         <View style={styles.container}>
             
             <Text style={styles.text}>{props.skill}</Text>
-            <Rating style={styles.stars} disabled={disabled}/>
+            <View style={styles.stars}>
+                {disabled ? <Text>{isPressedIn}</Text> : 
+            <StarRating
+            disabled={disabled}
+            maxStars={5}
+            rating={starCount}
+            selectedStar={(rating) => onStarRatingPress(rating)}
+            halfStarEnabled={true}
+            />
+    }
+            </View>
             <TouchableOpacity style={disabled ? styles.disabledRatings : styles.ratings} disabled={disabled} onPress={isPressed} onPressIn={isPressedIn}>
                 <Text style={styles.btntxt}><Ionicons name="md-star"/></Text>
             </TouchableOpacity>
@@ -54,9 +79,9 @@ export default function Skills(props) {
             
         </View>
     
-)  
+    )  
 
-}
+    }
 
 const styles = StyleSheet.create({
 container: {
@@ -106,5 +131,11 @@ disabledRatings: {
 },
 btntxt: {
     color: "#fff"
+},
+stars: {
+    flex: 3,
+    justifyContent: "center",
+    alignItems: "center"
+
 }
 })
