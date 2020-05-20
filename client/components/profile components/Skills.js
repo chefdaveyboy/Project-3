@@ -1,59 +1,82 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
 import Rating from "../profile components/Rating";
 import * as api from "../../services/rating"
 import { Ionicons } from '@expo/vector-icons';
-
+import { useAuth } from "../../providers/auth"; 
+import StarRating from "react-native-star-rating";
 
 export default function Skills(props) {
+
+    console.log(props.id, "these are our props")
     
-    
+    const {getAuthState} = useAuth()
     const [disabled, setDisabled] = useState(false);
     
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [starCount, setStarCount] = useState(2.5)
 
+    const onStarRatingPress = (rating) => {
+        setStarCount(rating)
+    }
 
     const isPressed = () => {
         setDisabled(true)
     }
 
+    useEffect(() => {
+        setDisabled(false);
+    },[])
+    
     const isPressedIn = async() => {
         setLoading(true)
 
-        let userId = "5ec014a14a03ec259cbe18dd"
-        let data = 
-        {
-            rating: rating,
-            skillName: "API Building",
-            postedBy: "bob@bobby.com"
-        }
+        const user = await getAuthState()
 
-        console.log("____>",data, "_____>")
+            if (user.user) {
+                let postedBy = user.user._id
+               
+                let userId = props.id 
 
+                let data = {
+                    rating: starCount,
+                    skillName: props.skill,
+                    postedBy: postedBy
+
+                }
+                console.log(postedBy);
         try {
             let response = await api.submitRating(userId, data);
             setLoading(false);
+            let message = response.message
+            console.log(message);
+            msg.push(message);
+            console.log(msg[0]);
         }  catch (error) {
             setError(error.message);
             setLoading(false)
         }
     }
+}   
+    const msg =[];
+    const message = JSON.stringify(msg[0]);
     
-
     return (
         <View style={styles.container}>
             
             <Text style={styles.text}>{props.skill}</Text>
             <View style={styles.stars}>
+                {disabled ? <Text style={styles.validation}>{message}</Text> : 
             <StarRating
-            disabled={state.disabled}
+            disabled={disabled}
             maxStars={5}
-            rating={state.starCount}
-            selectedStar={(rating) => this.onStarRatingPress(rating)}
+            rating={starCount}
+            selectedStar={(rating) => onStarRatingPress(rating)}
             halfStarEnabled={true}
             />
+    }
             </View>
             <TouchableOpacity style={disabled ? styles.disabledRatings : styles.ratings} disabled={disabled} onPress={isPressed} onPressIn={isPressedIn}>
                 <Text style={styles.btntxt}><Ionicons name="md-star"/></Text>
@@ -62,9 +85,9 @@ export default function Skills(props) {
             
         </View>
     
-)  
+    )  
 
-}
+    }
 
 const styles = StyleSheet.create({
 container: {
@@ -112,7 +135,19 @@ disabledRatings: {
     margin: 5,
     marginLeft: 30
 },
+validation: {
+    fontSize: 15,
+    flex: 3,
+    justifyContent: "center",
+    alignItems: "center"
+},
 btntxt: {
     color: "#fff"
+},
+stars: {
+    flex: 3,
+    justifyContent: "center",
+    alignItems: "center"
+
 }
 })

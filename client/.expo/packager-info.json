@@ -1,10 +1,10 @@
 {
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 5688,
+  "expoServerNgrokUrl": "https://7p-cfx.anonymous.client.exp.direct",
+  "packagerNgrokUrl": "https://packager.7p-cfx.anonymous.client.exp.direct",
+  "ngrokPid": 11324,
   "webpackServerPort": null,
   "devToolsPort": 19002
 }
