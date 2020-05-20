@@ -15,7 +15,7 @@ export default class ImageSelector extends React.Component {
         return (
             <View style={{flex:1, alignItems: 'center', justifyContent: 'center'}}>
                 <Button title="Select Image from Camera Roll" onPress={this._pickImage} />
-                {image && <Image source={{ uri: image }} style={{ width: 200, height: 200}} />}
+                {image && (<Image source={{ uri: image.uri }} style={{ width: 200, height: 200}} />)}
             </View>
         );
     }
