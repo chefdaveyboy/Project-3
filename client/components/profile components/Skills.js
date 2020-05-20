@@ -19,6 +19,7 @@ export default function Skills(props) {
     const [loading, setLoading] = useState(false);
     const [starCount, setStarCount] = useState(2.5)
 
+
     useFocusEffect(
         React.useCallback(() => {
             const reSetPage = () => {
@@ -27,8 +28,8 @@ export default function Skills(props) {
                 setDisabled(false)
             }
             return() => reSetPage();}, [userId])
-        )
-
+        
+    )
 
 
     const onStarRatingPress = (rating) => {
@@ -63,9 +64,9 @@ export default function Skills(props) {
 
 
             if (!response.pass) {
-                setMesssage("Already rated for this skill.")
+                setMesssage("Already rated.")
             } else {
-                setMesssage("Rating successfully added!")
+                setMesssage("Rating added!")
             }
 
         }  catch (error) {
@@ -155,5 +156,6 @@ stars: {
     justifyContent: "center",
     alignItems: "center"
 
-}
+},
+
 })
