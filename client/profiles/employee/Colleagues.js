@@ -12,14 +12,11 @@ import {createStackNavigator} from "react-navigation";
 import EmployeeTabs from "../../components/profile components/EmployeeTabs";
 import EmployeeProfile from "../../profiles/employee/Employee2Profile";
 
-
-
 export default function Colleagues(props) {
-
-    
+   
     const { navigation } = props;
     const { navigate } = navigation;
-    const { getUsers } = useAuth();
+    const { getUsers, getAuthState } = useAuth();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [users, setUsers] = useState({});
@@ -31,10 +28,14 @@ export default function Colleagues(props) {
     async function initialize() {
         try {
             const users = await api.getUsers()
+            let  user = await getAuthState()
 
-            if (users) {
-                console.log(users.users[0])
-                setUsers(users.users)
+            if (users.users && user.user) {
+
+                let id = user.user._id
+                shownUsers = users.users.filter(elem => elem._id !== id)
+                console.log(shownUsers)
+                setUsers(shownUsers)
             } else {
                 initialize()
             }
@@ -42,6 +43,13 @@ export default function Colleagues(props) {
             console.log(error)
         }
     };
+
+    onsubmit = (id) => {
+
+        let profile = users.filter(elem => elem._id == id)
+        navigation.navigate("EmployeeProfile", profile )
+
+    }
           return (
               <ScrollView>
                   <View style={styles.containerBottom}>
@@ -56,7 +64,7 @@ export default function Colleagues(props) {
                               <Text style={styles.text}>{user.firstName} {user.lastName}</Text>
                               <Text style={styles.textSecond}>Role: {user.jobRole}</Text>
                           </View>
-                          <TouchableOpacity style={styles.ratings} onPress={() => navigation.navigate("EmployeeProfile")}>
+                          <TouchableOpacity userId={user._id} style={styles.ratings} onPress={() => onsubmit(user._id)}>
                               <Text style={styles.btntxt}>View Profile</Text>
                           </TouchableOpacity>
                           </View>

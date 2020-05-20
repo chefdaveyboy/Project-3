@@ -18,10 +18,10 @@ export default function UpdateProfile (props) {
 
 
     const fields = [
-        {name: 'image', label: 'Profile Image', type: TYPES.Image, value:state.user.image},
-        {name: 'firstName', label: 'First Name', value:state.user.firstName},
-        {name: 'lastName', label: 'Last Name', value:state.user.lastName},
-        {name: 'username', label: 'Username', value:state.user.username},
+        {name: 'image', label: 'Profile Image', type: TYPES.Image, value:image},
+        {name: 'firstName', label: 'First Name', required,  value:state.user.firstName},
+        {name: 'lastName', label: 'Last Name', required, value:state.user.lastName},
+        {name: 'username', label: 'Username', required, value:state.user.username},
 
     ];
 
@@ -69,7 +69,7 @@ export default function UpdateProfile (props) {
       };
 
 
-    let formProps = {title: "Submit", fields, onSubmit, loading, showImagePicker};
+    let formProps = {title: "Submit", fields, onSubmit, loading, showImagePicker}, source=image;
     return (
         <View style={{flex: 1, paddingHorizontal: 16, backgroundColor:"#fff"}}>
             <View style={{flex:1}}>

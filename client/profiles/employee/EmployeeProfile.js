@@ -29,14 +29,11 @@ export default function EmployeeProfile(props)  {
 
                 let userId = user.user._id
 
-                console.log(userId)
-
             const ratings = await api.getAvgRatings(userId)
-
-            console.log(ratings)
 
                 if(ratings) {
                     setRatings(ratings)
+                    
                 } else {
                     setRatings({})
                 }
@@ -52,7 +49,7 @@ export default function EmployeeProfile(props)  {
     
       return (
             <ScrollView>
-                <ProfileHeader name={user.user ? `${user.user.firstName}  ${user.user.lastName}` : "firstname lastname"} role={user.user ? user.user.jobRole : "role"}/>
+                <ProfileHeader name={user.user ? `${user.user.firstName}  ${user.user.lastName}` : "firstname lastname"} role={user.user ? user.user.jobRole : "role"} myUserId={user.user ? user.user._id : "id"}/>
                 <View style={styles.containerBottom}>
                     {ratings[0] ? ratings.map(rating => 
                     <Skills number={rating.total} rating={rating.avgRat/2} skill={rating.skill} key={rating.skill} keyName={rating.skill}/>)
