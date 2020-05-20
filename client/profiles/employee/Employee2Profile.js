@@ -18,7 +18,7 @@ export default function Employee2Profile(props) {
                     
                    
                 </View>
-                <SkillSet/>
+                <SkillSet id={userInfo._id}/>
             </ScrollView>
         
     )  

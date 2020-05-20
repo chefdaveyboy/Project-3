@@ -65,7 +65,7 @@ export default function Colleagues(props) {
                               <Text style={styles.textSecond}>Role: {user.jobRole}</Text>
                           </View>
                           <TouchableOpacity userId={user._id} style={styles.ratings} onPress={() => onsubmit(user._id)}>
-                              <Text style={styles.btntxt}>View Profile</Text>
+                              <Text style={styles.btntxt}>Rate</Text>
                           </TouchableOpacity>
                           </View>
                           
