@@ -12,8 +12,7 @@ Register for an account to begin submitting ratings for folks you know, and watc
 
 Level Up Coding Screens: 
 
-![Images from Level Up Coding](./client/assets/images/ReadMeImages/splashscreen.png)  ![Login](../client/assets/images/ReadMeImages/combined.png)
-
+![Images from Level Up Coding](./client/assets/images/ReadMeImages/combined.png)
 
 
 
