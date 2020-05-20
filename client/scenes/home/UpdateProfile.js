@@ -34,11 +34,11 @@ export default function UpdateProfile (props) {
   ]
 
   const fields = [
+    //Profile Image DOES NOT WORK!!
       {name: 'image', label: 'Profile Image', type: TYPES.Image, value:image},
       {name: 'username', label:'Username', required: true},
       {name: 'firstName', label: 'First Name', required: true},
       {name: 'lastName', label: 'Last Name', required: true},
-      {name: 'email', label: 'Email Address', required: true},
       {name: 'password', label: 'Password', required: true, secure:true},
       {name: 'jobRole', label: 'Job Title or Role', required: true, type: TYPES.Dropdown, options: options}
   ];

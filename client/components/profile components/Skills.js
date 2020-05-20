@@ -80,7 +80,7 @@ export default function Skills(props) {
             
             <Text style={styles.text}>{props.skill}</Text>
             <View style={styles.stars}>
-                {disabled ? <Text>{message}</Text> : 
+                {disabled ? <Text style={styles.rateMsg}>{message}</Text> : 
             <StarRating
             disabled={disabled}
             maxStars={5}
@@ -112,6 +112,15 @@ container: {
     borderColor: "#BBBBBB",
     borderRadius: 10,
     marginTop: 15,
+},
+rateMsg: {
+    flex: 3,
+    color: "#59cbbd",
+    fontWeight: "bold",
+    fontSize: 20,
+    textAlign: "center",
+    textAlignVertical: "center",
+    margin: 7
 },
 
 text: {

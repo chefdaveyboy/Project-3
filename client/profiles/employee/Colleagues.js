@@ -6,11 +6,12 @@ import { useAuth } from "../../providers/auth";
 import * as api from "../../services/auth";
 import {NagivationContainer, NavigationEvents} from "react-navigation";
 import {createStackNavigator} from "react-navigation";
-
+import Constants from 'expo-constants';
 //Profile Components
 
 import EmployeeTabs from "../../components/profile components/EmployeeTabs";
 import EmployeeProfile from "../../profiles/employee/Employee2Profile";
+
 
 export default function Colleagues(props) {
    
@@ -51,7 +52,7 @@ export default function Colleagues(props) {
 
     }
           return (
-              <ScrollView>
+              <ScrollView style={{flex: 2, backgroundColor: '#fff'}}>
                   <View style={styles.containerBottom}>
                       {users[0] ? users.map(user => (
                           <View key={user._id} style={styles.colleagueContainer} >
@@ -83,7 +84,8 @@ export default function Colleagues(props) {
 const styles = StyleSheet.create({
     
     containerBottom: {
-        marginTop: 20,
+        flex: 1,
+        marginTop: Constants.statusBarHeight,
         backgroundColor: "#fff",
         alignItems: "center",
     },
