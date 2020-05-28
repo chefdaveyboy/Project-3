@@ -6,11 +6,12 @@ import { useAuth } from "../../providers/auth";
 import * as api from "../../services/auth";
 import {NagivationContainer, NavigationEvents} from "react-navigation";
 import {createStackNavigator} from "react-navigation";
-
+import Constants from 'expo-constants';
 //Profile Components
 
 import EmployeeTabs from "../../components/profile components/EmployeeTabs";
 import EmployeeProfile from "../../profiles/employee/Employee2Profile";
+
 
 export default function Colleagues(props) {
    
@@ -51,11 +52,11 @@ export default function Colleagues(props) {
 
     }
           return (
-              <ScrollView>
+              <ScrollView style={{flex: 2, backgroundColor: '#fff'}}>
                   <View style={styles.containerBottom}>
                       {users[0] ? users.map(user => (
-                          <View key={user._id}>
-                          <View style={styles.container} >
+                          <View key={user._id} style={styles.colleagueContainer} >
+                          
                           <Image
                           source={tempImage}
                           style={styles.images}
@@ -69,7 +70,7 @@ export default function Colleagues(props) {
                           </TouchableOpacity>
                           </View>
                           
-                      </View>
+                      
                     // <EmployeeTabs key={user._id} name={user.firstName} lastName={user.lastName} role={user.jobRole}/>
                     )) : <Text>No colleages available</Text> }
                 </View>
@@ -83,7 +84,8 @@ export default function Colleagues(props) {
 const styles = StyleSheet.create({
     
     containerBottom: {
-        marginTop: 20,
+        flex: 1,
+        marginTop: Constants.statusBarHeight,
         backgroundColor: "#fff",
         alignItems: "center",
     },
@@ -129,10 +131,11 @@ const styles = StyleSheet.create({
         marginBottom: 30,   
 
     },
-    container: {
+    colleagueContainer: {
+        flex: 1,
         backgroundColor: "#fff",
         flexDirection: "row",
-        alignContent: "center",
+        alignContent: "stretch",
         justifyContent: "center",
         borderWidth: 2,
         borderColor: "#BBBBBB",
@@ -142,8 +145,10 @@ const styles = StyleSheet.create({
            
     },
     containerInner: {
+        flex: 3,
         flexDirection: "column",
-        justifyContent: "center"
+        justifyContent: "center",
+
     },
     text: {
         fontSize: 20,
@@ -153,13 +158,14 @@ const styles = StyleSheet.create({
         
     },
     textSecond: {
-       fontSize: 10,
+       fontSize: 12,
+       fontWeight: "bold",
        color: "#59cbbd",
        margin: 10,
        marginTop: 2
     },
     images: {
-        
+        flex: 1,
         margin: 10,
         marginTop: 15,
         width: 50,
@@ -168,6 +174,7 @@ const styles = StyleSheet.create({
 
     },
     ratings: {
+        flex: 1,
         alignItems: "center",
         justifyContent: "center",
         width: 100,

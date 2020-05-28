@@ -16,6 +16,7 @@ export default class Employee2Profile extends React.Component {
     }
 
     render() {
+        
       return (
                 
                 <View style={styles.containerBottom}>
