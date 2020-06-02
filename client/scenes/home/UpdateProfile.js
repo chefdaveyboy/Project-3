@@ -35,7 +35,7 @@ export default function UpdateProfile (props) {
 
   const fields = [
     //Profile Image DOES NOT WORK!!
-      {name: 'image', label: 'Profile Image', type: TYPES.Image, value:image},
+      {name: 'image', label: 'Profile Image', type: TYPES.Image},
       {name: 'username', label:'Username', required: true},
       {name: 'firstName', label: 'First Name', required: true},
       {name: 'lastName', label: 'Last Name', required: true},
@@ -77,8 +77,8 @@ export default function UpdateProfile (props) {
             quality: 1,
           });
           if (!result.cancelled) {
-                updateImage(result.uri)
-                console.log(image)
+              updateImage(result.uri);
+              
             }
     
         } catch (E) {
@@ -87,13 +87,14 @@ export default function UpdateProfile (props) {
       };
 
 
-    let formProps = {title: "Submit", fields, onSubmit, loading, showImagePicker}, source=image;
+    let formProps = {title: "Submit", fields, onSubmit, loading, showImagePicker};
     return (
         <View style={{flex: 1, paddingHorizontal: 16, backgroundColor:"#fff"}}>
             <View style={{flex:1}}>
                 <ErrorText error={error}/>
-                <Image source={{uri: image}}/>
-                <Form {...formProps}>
+                <Image source={{uri: image}} style={{ width: 200, height: 200}} />
+                <Form {...formProps} >
+                  
                     </Form>
             </View>
         </View>

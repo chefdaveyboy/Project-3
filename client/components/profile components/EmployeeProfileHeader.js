@@ -1,27 +1,30 @@
 import React, { useState } from "react";
 import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
 import tempImage from "../../assets/images/Fergal.jpg";
+import * as ImagePicker from 'expo-image-picker';
 
 
+export default UpdateProfile = (props) => {
 
-export default class ProfileHeader extends React.Component {
-    render() {
+    const [image, setImage] = useState(tempImage);
+
+  
       return (
             
                 <View style={styles.container}>
                 <Image
-                source={tempImage}
+                source={image}
                 style={styles.images}
                 />
-                <Text style={styles.header}>{this.props.name}</Text>
-                <Text style={styles.text2}>Role: {this.props.role}</Text>
+                <Text style={styles.header}>{props.name}</Text>
+                <Text style={styles.text2}>Role: {props.role}</Text>
                 </View>
             
         
     )  
     }
     
-}
+
 
 const styles = StyleSheet.create({
     container: {

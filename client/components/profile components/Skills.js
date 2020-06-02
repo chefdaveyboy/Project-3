@@ -81,13 +81,13 @@ export default function Skills(props) {
             <Text style={styles.text}>{props.skill}</Text>
             <View style={styles.stars}>
                 {disabled ? <Text style={styles.rateMsg}>{message}</Text> : 
-            <StarRating
-            disabled={disabled}
-            maxStars={5}
-            rating={starCount}
-            selectedStar={(rating) => onStarRatingPress(rating)}
-            halfStarEnabled={true}
-            />
+                <StarRating
+                disabled={disabled}
+                maxStars={5}
+                rating={starCount}
+                selectedStar={(rating) => onStarRatingPress(rating)}
+                halfStarEnabled={true}
+                />
     }
             </View>
             <TouchableOpacity style={disabled ? styles.disabledRatings : styles.ratings} disabled={disabled} onPress={isPressed} onPressIn={isPressedIn}>

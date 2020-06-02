@@ -3,7 +3,7 @@ import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "reac
 
 import { ScrollView } from 'react-native-gesture-handler';
 
-//Profile Components
+// Profile Components
 import ProfileHeader from "../../components/profile components/EmployeeProfileHeader";
 import SkillSet from "../../components/profile components/SkillSet";
 import SkillsContainer from "../../components/profile components/skillsContainer";

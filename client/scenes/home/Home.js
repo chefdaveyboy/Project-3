@@ -9,6 +9,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import BottomTabNavigator from "../../navigation/BottomTabNavigator";
 
+import EmployerBottomTab from "../../employer navigation/EmployerBottomTab";
+
 const Stack = createStackNavigator();
 
 export default function Home(props) {
@@ -42,6 +44,7 @@ export default function Home(props) {
                 <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
                     <Stack.Navigator
                     screenOptions={{headerShown: false}}>
+                        {/* Change compoment to change Navigation Views */}
                         <Stack.Screen name="Profile" component={BottomTabNavigator} />
                     </Stack.Navigator>
                 </NavigationContainer>
