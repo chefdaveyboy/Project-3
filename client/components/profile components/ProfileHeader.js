@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
-import sampleImage from "../../assets/images/Fergal.jpg";
 // import { useAuth } from "../../providers/auth";
 import * as api from "../../services/auth";
 import * as ImagePicker from 'expo-image-picker';
@@ -14,18 +13,44 @@ export default UpdateProfile = (props) => {
 
     const id = props.myUserId;
 
-    
+    const uploadImage = async (data) => {
+        try {
+            console.log("upload image before");
+            console.log(data);
+            let result = await api.updateProfileImage(id, data);
+            console.log(result);
+            console.log("upload image after");
+        } catch (error) {
+            setError(error.message);
+        }
+    }
 
-    
+    const showImagePicker = async () => {
+        try {
+            let result = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                allowsEditing: true,
+                aspect: [4, 3],
+                quality: 1,
+            });
+            if (!result.cancelled) {
+                setImage(result.uri);
+                let data = image;
+                uploadImage(data);
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    };
       return (
             
                 <View style={styles.container}>
-                    
+                    <TouchableOpacity onPress={showImagePicker}>
                         <Image
-                        source={image ? {uri: image} : sampleImage}
+                        source={image ? {uri: image} : props.image}
                         style={styles.images}
                         />
-                    
+                    </TouchableOpacity>
                     <TouchableOpacity>
 
                     </TouchableOpacity>

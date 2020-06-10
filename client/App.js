@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import React, { useState } from 'react';
+import { Platform, StatusBar, StyleSheet, View, ScrollView, RefreshControl } from 'react-native';
 import { SplashScreen } from 'expo';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
@@ -17,6 +17,7 @@ import HomeStack from "./routes/home";
 
 import AuthLoading from "./scenes/auth/AuthLoading";
 import AuthProvider from "./providers/auth";
+import { State } from 'react-native-gesture-handler';
 
 const AppStack = createSwitchNavigator(
   {
@@ -36,6 +37,7 @@ export default function App(props) {
   const [initialNavigationState, setInitialNavigationState] = React.useState();
   const containerRef = React.useRef();
   const { getInitialState } = useLinking(containerRef);
+  
 
   // Load any resources or data that we need prior to rendering the app
   React.useEffect(() => {
@@ -68,9 +70,12 @@ export default function App(props) {
     return null;
   } else {
     return (
-      <View style={styles.container}>
+      <View style={styles.container}
+      >
+        
         {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
         <AuthProvider><Navigator/></AuthProvider>
+        
       </View>
     );
   }
