@@ -82,7 +82,7 @@ export default function EmployerProfile(props)  {
                               <Text style={styles.btntxt}>View Profile</Text>
                           </TouchableOpacity>
                           </View>
-                    )) : <Text>No colleages available</Text> }
+                    )) : <Text>No employees available</Text> }
                 </View>
             </ScrollView>
           )
