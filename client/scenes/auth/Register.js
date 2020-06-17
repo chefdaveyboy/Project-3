@@ -44,7 +44,7 @@ export default function Register(props) {
         {name: 'email', label: 'Email Address', required: true},
         {name: 'password', label: 'Password', required: true, secure:true},
         {name: 'jobRole', label: 'Job Title or Role', required: true, type: TYPES.Dropdown, options: options},
-        {name: 'companyName', label: 'Company', required: true},
+        {name: 'company', label: 'Company', required: true},
         {name: 'employer', label: 'Are you an employer?', type: TYPES.Dropdown, options: optionsEmployer},
     ];
 

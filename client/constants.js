@@ -5,6 +5,7 @@ export const API_URL = 'http://192.168.0.7:3000/api';
 
 //API End Points
 export const REGISTER = `${API_URL}/auth/register`;
+export const REGISTER_EMPLOYEE = `${API_URL}/auth/register/employee`;
 export const LOGIN = `${API_URL}/auth/login`;
 export const USER = `${API_URL}/user`;
 export const UPLOAD_IMAGE = `${API_URL}/user/upload`;

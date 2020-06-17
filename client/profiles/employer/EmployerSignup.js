@@ -1,32 +1,73 @@
 //FUTURE DEVELOPMENT
 import React, { useState } from "react";
 import { StyleSheet, TextInput, Text, View, TouchableOpacity } from "react-native";
+import Form, { TYPES } from 'react-native-basic-form';
+import * as api from "../../services/auth";
+import {Header, ErrorText} from "../../auth-components/Shared";
 
 
-export default class EmployerSignUp extends React.Component {
-    render() {
-      return (
-        <View style={styles.container}>
-           <Text style={styles.header}>Employee Information</Text>
+export default function EmployerSignUp () {
 
-           <TextInput style={styles.textinput} placeholder="Employee Name"
-           underlineColorAndroid={"transparent"} />
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
-            <TextInput style={styles.textinput} placeholder="Role"
-            underlineColorAndroid={"transparent"} />
+    const options = [
+        {label: "Front End Developer", value:"Front End Developer"},
+        {label: "Back End Developer", value:"Back End Developer"},
+        {label: "Full Stack Developer", value: "Full Stack Developer"},
+        {label: "Database Manager", value: "Database Manager"},
+        {label: "Software Engineer", value: "Software Engineer"},
+        {label: "Product Manager", value: "Product Manager"},
+        {label: "Web Developer", value: "Web Developer"},
+        {label: ".NET Developer", value: ".NET Developer"},
+        {label: "Java Developer", value: "Java Developer"},
+        {label: "Quality Assurance Engineer", value: "Quality Assurance Engineer"},
+        {label: "Software Developer", value: "Software Developer"},
+        {label: "Systems Architect", value: "Systems Architect"},
+        {label: "Application Developer", value: "Application Developer"},
+        {label: "Developer", value: "Developer"},
+        {label: "Hiring Manager", value: "Hiring Manager"},
+        {label: "Recruiter", value: "Recruiter"},
+        {label: "other", value: "other"}
+    ]
 
-            <TextInput style={styles.textinput} placeholder="Employee Email"
-            underlineColorAndroid={"transparent"} />
+    const fields = [
+        {name: 'firstName', label:'Employee First Name', required: true},
+        {name: 'lastName', label: 'Employee Last Name', required: true},
+        {name: 'email', label: 'Employee Email Address', required: true},
+        {name: 'jobRole', label: 'Employee Job Title or Role', required: true, type: TYPES.Dropdown, options: options},
+    ];
 
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.btntext}>Add Employee</Text>
-            </TouchableOpacity>
-        </View>
-    )  
+    async function onSubmit(state) {
+        setLoading(true);
+
+        try {
+            let response = await api.registerEmployee(state);
+            setLoading(false);
+            Alert.alert(
+                'Employee will receive email shortly',
+                response.message,
+                [{text: 'OK', onPress: () => navigation.replace("Login")}],
+                {cancelable: false},
+            );
+        } catch (error) {
+            setError(error.message);
+            setLoading(false)
+        }
     }
-    
-}
 
+    let formProps = {title: "Add Employee", fields, onSubmit, loading, style: styles.textinput, buttonStyle: styles.button };
+    return (
+        <View style={styles.container}>
+            <Header style={styles.header} title={"Employee Information"}/>
+            <View style={styles.container}>
+                <ErrorText error={error}/>
+                <Form {...formProps}>
+                </Form>
+            </View>
+        </View>
+    );
+};
 
 
 const styles = StyleSheet.create({

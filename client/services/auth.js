@@ -12,6 +12,16 @@ export async function register(data){
     }
 }
 
+export async function registerEmployee(data) {
+    try {
+        let res = await axios.post(c.REGISTER_EMPLOYEE, data);
+
+        return res.data;
+    }catch (e) {
+        throw handler(e)
+    }
+}
+
 export async function login(data){
     try{
         let res = await axios.post(c.LOGIN, data);
