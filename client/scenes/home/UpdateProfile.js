@@ -14,7 +14,7 @@ export default function UpdateProfile (props) {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const { state, updateUser } = useAuth();
-    const [image, updateImage] = useState(null);
+    
 
     const options = [
       {label: "Front End Developer", value:"Front End Developer"},
@@ -35,7 +35,6 @@ export default function UpdateProfile (props) {
 
   const fields = [
     //Profile Image DOES NOT WORK!!
-      {name: 'image', label: 'Profile Image', type: TYPES.Image, value:image},
       {name: 'username', label:'Username', required: true},
       {name: 'firstName', label: 'First Name', required: true},
       {name: 'lastName', label: 'Last Name', required: true},
@@ -59,46 +58,19 @@ export default function UpdateProfile (props) {
         }
     }
 
-    async function getPermissionsAsync() {
-        if (Constants.platform.ios) {
-          const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-          if (status !== 'granted') {
-            alert('Sorry, we need camera roll permissions to make this work!');
-          }
-        }
-      };
-    
-      async function showImagePicker() {
-        try {
-          let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-          });
-          if (!result.cancelled) {
-                updateImage(result.uri)
-                console.log(image)
-            }
-    
-        } catch (E) {
-          console.log(E);
-        }
-      };
 
-
-    let formProps = {title: "Submit", fields, onSubmit, loading, showImagePicker}, source=image;
+    let formProps = {title: "Submit", fields, onSubmit, loading};
     return (
         <View style={{flex: 1, paddingHorizontal: 16, backgroundColor:"#fff"}}>
             <View style={{flex:1}}>
                 <ErrorText error={error}/>
-                <Image source={{uri: image}}/>
-                <Form {...formProps}>
-                    </Form>
+                <Form {...formProps} >
+                </Form>
             </View>
         </View>
     );
 };
+                  
 
 UpdateProfile.navigationOptions = ({}) => {
     return {

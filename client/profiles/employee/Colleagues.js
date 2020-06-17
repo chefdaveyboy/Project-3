@@ -7,7 +7,8 @@ import * as api from "../../services/auth";
 import {NagivationContainer, NavigationEvents} from "react-navigation";
 import {createStackNavigator} from "react-navigation";
 import Constants from 'expo-constants';
-//Profile Components
+
+// Profile Components
 
 import EmployeeTabs from "../../components/profile components/EmployeeTabs";
 import EmployeeProfile from "../../profiles/employee/Employee2Profile";
@@ -69,9 +70,6 @@ export default function Colleagues(props) {
                               <Text style={styles.btntxt}>Rate</Text>
                           </TouchableOpacity>
                           </View>
-                          
-                      
-                    // <EmployeeTabs key={user._id} name={user.firstName} lastName={user.lastName} role={user.jobRole}/>
                     )) : <Text>No colleages available</Text> }
                 </View>
             </ScrollView>
