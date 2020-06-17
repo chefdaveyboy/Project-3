@@ -109,11 +109,5 @@ We reccomend a good grasp of react and some reserach into react-native, JSX, and
 
 ------------------------------------------
 
-Huge Shoutout!!! to @MosesEsan for this tutorial on creating an authentication API: 
 
-https://medium.com/swlh/how-to-build-a-node-js-authentication-api-with-email-verification-image-upload-and-password-reset-95e35fd46be1
-
-AND for this tutorial on integrating that API with React Native: 
-
-https://medium.com/better-programming/how-to-add-authentication-to-your-react-native-app-with-react-hooks-and-react-context-api-46f57aedbbd
 

@@ -53,6 +53,7 @@ export async function updateProfile(userId, data){
 }
 
 export async function updateProfileImage(userId, data){
+  
     try{
         const options = {
             headers: {

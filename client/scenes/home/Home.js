@@ -45,7 +45,8 @@ export default function Home(props) {
                     <Stack.Navigator
                     screenOptions={{headerShown: false}}>
                         {/* Change compoment to change Navigation Views */}
-                        <Stack.Screen name="Profile" component={BottomTabNavigator} />
+                        <Stack.Screen name="Profile" component={user.employer ? EmployerBottomTab : BottomTabNavigator} />
+
                     </Stack.Navigator>
                 </NavigationContainer>
                 {/* -------- */}

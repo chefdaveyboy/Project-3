@@ -58,16 +58,6 @@ export default function UpdateProfile (props) {
         }
     }
 
-    async function getPermissionsAsync() {
-        if (Constants.platform.ios) {
-          const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-          if (status !== 'granted') {
-            alert('Sorry, we need camera roll permissions to make this work!');
-          }
-        }
-      };
-    
-
 
     let formProps = {title: "Submit", fields, onSubmit, loading};
     return (

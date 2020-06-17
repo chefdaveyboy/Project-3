@@ -26,7 +26,15 @@ export default function Register(props) {
         {label: "Software Developer", value: "Software Developer"},
         {label: "Systems Architect", value: "Systems Architect"},
         {label: "Application Developer", value: "Application Developer"},
-        {label: "Developer", value: "Developer"}
+        {label: "Developer", value: "Developer"},
+        {label: "Hiring Manager", value: "Hiring Manager"},
+        {label: "Recruiter", value: "Recruiter"},
+        {label: "other", value: "other"}
+    ]
+
+    const optionsEmployer = [
+        {label: "Yes", value: true },
+        {label: "No", value: false }
     ]
 
     const fields = [
@@ -35,7 +43,9 @@ export default function Register(props) {
         {name: 'lastName', label: 'Last Name', required: true},
         {name: 'email', label: 'Email Address', required: true},
         {name: 'password', label: 'Password', required: true, secure:true},
-        {name: 'jobRole', label: 'Job Title or Role', required: true, type: TYPES.Dropdown, options: options}
+        {name: 'jobRole', label: 'Job Title or Role', required: true, type: TYPES.Dropdown, options: options},
+        {name: 'companyName', label: 'Company', required: true},
+        {name: 'employer', label: 'Are you an employer?', type: TYPES.Dropdown, options: optionsEmployer},
     ];
 
     
