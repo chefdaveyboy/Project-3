@@ -51,10 +51,10 @@ export default function EmployerBottomTab({ navigation, route }) {
       />
       
       {/* Hidden */}
-      {/* <BottomTab.Screen
+      <BottomTab.Screen
         name="EmployeeProfile"
         component={EmployerView}
-        /> */}
+        />
         
       
       

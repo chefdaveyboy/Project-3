@@ -46,15 +46,13 @@ export default UpdateProfile = (props) => {
       return (
             
                 <View style={styles.container}>
-                    <TouchableOpacity onPress={showImagePicker}>
+                    
                         <Image
                         source={image ? {uri: image} : props.image}
                         style={styles.images}
                         />
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-
-                    </TouchableOpacity>
+                    
+                    
                     <Text style={styles.header}>{props.name}</Text>
                     <Text style={styles.text2}>Role: {props.role}</Text>
                 </View>
