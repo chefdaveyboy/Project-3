@@ -12,7 +12,7 @@ export default function Employee2Profile(props) {
     let userInfo = props.route.params[0]
 
       return (
-            <ScrollView>
+            <ScrollView style={{backgroundColor: "#fff"}}>
                 <ProfileHeader name={`${userInfo.firstName} ${userInfo.lastName}`} role={userInfo.jobRole}/>
                 <View style={styles.containerMiddle}>
                     
