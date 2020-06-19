@@ -12,9 +12,11 @@ export async function register(data){
     }
 }
 
-export async function registerEmployee(data) {
+export async function registerEmployee(data, company) {
     try {
-        let res = await axios.post(c.REGISTER_EMPLOYEE, data);
+
+        console.log(data, company, "HERE IS OUR DATA")
+        let res = await axios.post(c.REGISTER_EMPLOYEE, data, company);
 
         return res.data;
     }catch (e) {
@@ -86,6 +88,15 @@ export async function updateProfileImage(userId, data){
 export async function getUsers() {
     try {
             let res = await axios.get(c.USER)
+            return res.data;
+    } catch (e) {
+        throw handler(e)
+    }
+}
+
+export async function getCompanyUsers(company) {
+    try {
+            let res = await axios.get(`${c.USER}/${company}`)
             return res.data;
     } catch (e) {
         throw handler(e)
