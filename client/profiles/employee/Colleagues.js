@@ -35,8 +35,8 @@ export default function Colleagues(props) {
             if (users.users && user.user) {
 
                 let id = user.user._id
-                shownUsers = users.users.filter(elem => elem._id !== id)
-                console.log(shownUsers)
+                let company = user.user.company
+                shownUsers = users.users.filter(elem => elem._id !== id && elem.company == company)
                 setUsers(shownUsers)
             } else {
                 initialize()

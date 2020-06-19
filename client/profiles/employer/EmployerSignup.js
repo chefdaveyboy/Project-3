@@ -1,16 +1,38 @@
 //FUTURE DEVELOPMENT
-import React, { useState } from "react";
-import { StyleSheet, TextInput, Text, View, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Alert, StyleSheet, TextInput, Text, View, TouchableOpacity } from "react-native";
 import Form, { TYPES } from 'react-native-basic-form';
+import { useAuth } from "../../providers/auth";
 import * as api from "../../services/auth";
 import {Header, ErrorText} from "../../auth-components/Shared";
+import { UserInterfaceIdiom } from 'expo-constants';
 
 
-export default function EmployerSignUp () {
-
+export default function EmployerSignUp (props) {
+   
+    const { navigation } = props;
+    const { getUsers, getAuthState } = useAuth();
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [user, setUser] = useState({})
 
+    useEffect(() => {
+        initialize()
+    }, []);
+   
+    async function initialize() {
+
+                try {
+                    const user = await getAuthState()
+        
+                    if (user) {
+                        setUser(user.user)
+                    }
+                } catch (error) {
+                    console.log(error)
+                }
+                        
+};
     const options = [
         {label: "Front End Developer", value:"Front End Developer"},
         {label: "Back End Developer", value:"Back End Developer"},
@@ -29,19 +51,27 @@ export default function EmployerSignUp () {
         {label: "Hiring Manager", value: "Hiring Manager"},
         {label: "Recruiter", value: "Recruiter"},
         {label: "other", value: "other"}
+
+
     ]
+
+    const initialData = {
+        "company": "No company Available"
+    }
 
     const fields = [
         {name: 'firstName', label:'Employee First Name', required: true},
         {name: 'lastName', label: 'Employee Last Name', required: true},
         {name: 'email', label: 'Employee Email Address', required: true},
         {name: 'jobRole', label: 'Employee Job Title or Role', required: true, type: TYPES.Dropdown, options: options},
+        {name: 'company', label: 'Company', required: true}
     ];
 
     async function onSubmit(state) {
         setLoading(true);
 
         try {
+
             let response = await api.registerEmployee(state);
             setLoading(false);
             Alert.alert(
@@ -50,13 +80,14 @@ export default function EmployerSignUp () {
                 [{text: 'OK', onPress: () => navigation.replace("Login")}],
                 {cancelable: false},
             );
+
         } catch (error) {
             setError(error.message);
             setLoading(false)
         }
     }
 
-    let formProps = {title: "Add Employee", fields, onSubmit, loading, style: styles.textinput, buttonStyle: styles.button };
+    let formProps = {title: "Add Employee", fields, onSubmit, loading, style: styles.textinput, buttonStyle: styles.button, initialData};
     return (
         <View style={styles.container}>
             <Header style={styles.header} title={"Employee Information"}/>

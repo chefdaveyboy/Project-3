@@ -31,14 +31,15 @@ export default function EmployerProfile(props)  {
                     const user = await getAuthState()
         
                     if (user) {
+                        let company = user.user.company
                         setUser(user)
-        
-                        const users = await api.getUsers()
+                        console.log(user, "this is where user is")
+                        const users = await api.getCompanyUsers(company)
                         if (users.users && user.user) {
 
                         let id = user.user._id
-                        shownUsers = users.users.filter(elem => elem._id !== id)
-                        console.log(shownUsers)
+                        let company = user.user.company
+                        shownUsers = users.users.filter(elem => elem._id !== id && elem.company == company)
                         setUsers(shownUsers)
                         } else {
                             setUsers({})
