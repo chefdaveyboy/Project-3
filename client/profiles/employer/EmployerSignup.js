@@ -1,12 +1,10 @@
 //FUTURE DEVELOPMENT
-import React, { useState, useEffect } from "react";
-import { Alert, StyleSheet, TextInput, Text, View, TouchableOpacity } from "react-native";
+import React, { useState, useEffect, useReducer } from "react";
+import { Alert, StyleSheet, View, ScrollView } from "react-native";
 import Form, { TYPES } from 'react-native-basic-form';
 import { useAuth } from "../../providers/auth";
 import * as api from "../../services/auth";
 import {Header, ErrorText} from "../../auth-components/Shared";
-import { UserInterfaceIdiom } from 'expo-constants';
-
 
 export default function EmployerSignUp (props) {
    
@@ -27,6 +25,7 @@ export default function EmployerSignUp (props) {
         
                     if (user) {
                         setUser(user.user)
+                        console.log(user)
                     }
                 } catch (error) {
                     console.log(error)
@@ -55,16 +54,16 @@ export default function EmployerSignUp (props) {
 
     ]
 
-    const initialData = {
-        "company": "No company Available"
-    }
+    const companyOptions = [
+        {label: `${user ? user.company : "No company available"}`, value: `${user ? user.company : "No company available"}`},
+    ]
 
     const fields = [
         {name: 'firstName', label:'Employee First Name', required: true},
         {name: 'lastName', label: 'Employee Last Name', required: true},
         {name: 'email', label: 'Employee Email Address', required: true},
         {name: 'jobRole', label: 'Employee Job Title or Role', required: true, type: TYPES.Dropdown, options: options},
-        {name: 'company', label: 'Company', required: true}
+        {name: 'company', label: 'Company', required: true, type: TYPES.Dropdown, options: companyOptions}
     ];
 
     async function onSubmit(state) {
@@ -87,16 +86,17 @@ export default function EmployerSignUp (props) {
         }
     }
 
-    let formProps = {title: "Add Employee", fields, onSubmit, loading, style: styles.textinput, buttonStyle: styles.button, initialData};
+    let formProps = {title: "Add Employee", fields, onSubmit, loading, style: styles.textinput, buttonStyle: styles.button};
     return (
-        <View style={styles.container}>
-            <Header style={styles.header} title={"Employee Information"}/>
+        <ScrollView >
             <View style={styles.container}>
-                <ErrorText error={error}/>
-                <Form {...formProps}>
-                </Form>
-            </View>
-        </View>
+            <Header style={styles.header} title={"Employee Information"}/>
+            <ErrorText error={error}/>
+            <Form {...formProps}>
+            </Form>
+            </View>    
+            
+        </ScrollView>
     );
 };
 
@@ -104,7 +104,7 @@ export default function EmployerSignUp (props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#8459CB",
+        backgroundColor: "#fff",
         justifyContent: "center",
         alignItems: "center",
            
@@ -112,28 +112,22 @@ const styles = StyleSheet.create({
     header: {
         fontSize: 24,
         color: "#fff",
-        paddingBottom: 10,
-        marginBottom: 40,
+        paddingBottom: 1,
+        marginBottom: 0,
         borderBottomColor: "#199187",
         borderBottomWidth: 1,
     },
     textinput: {
         
         
-        textAlign: "center",
-        height: 40,
-        marginBottom: 30,
-        color: "#fff",
-        borderBottomColor: "#f8f8f8",
-        borderBottomWidth: 1
-        
     },
     button: {
         
         alignItems: "center",
         padding: 20,
-        backgroundColor: "#59cbbd",
-        marginTop: 30,
+        backgroundColor: "#8459CB",
+        marginTop: 15,
+        marginBottom: 30,
         borderRadius: 10,    
     },
     btntext: {

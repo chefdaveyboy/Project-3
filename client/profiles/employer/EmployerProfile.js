@@ -7,7 +7,7 @@ import * as api from "../../services/auth";
 import * as profileInfo from "../../services/auth";
 import tempImage from "../../assets/images/Fergal.jpg";
 //Profile Components
-import ProfileHeader from "../../components/profile components/EmployeeProfileHeader";
+import ProfileHeader from "../../components/profile components/ProfileHeader";
 import Constants from 'expo-constants';
 
 
@@ -29,18 +29,17 @@ export default function EmployerProfile(props)  {
 
                 try {
                     const user = await getAuthState()
-        
+                    
                     if (user) {
                         let company = user.user.company
                         setUser(user)
-                        console.log(user, "this is where user is")
-                        const users = await api.getCompanyUsers(company)
-                        if (users.users && user.user) {
-
-                        let id = user.user._id
-                        let company = user.user.company
-                        shownUsers = users.users.filter(elem => elem._id !== id && elem.company == company)
+                        const companyUsers = await api.getCompanyUsers(company)
+                        console.log(companyUsers, "this is company usrs")
+                        if (companyUsers[0] && user.user) {
+                        let id = user._id
+                        shownUsers = companyUsers.filter(elem => elem._id !== id)
                         setUsers(shownUsers)
+                        console.log(users, "these are our users")
                         } else {
                             setUsers({})
                         }
@@ -61,8 +60,6 @@ export default function EmployerProfile(props)  {
         navigation.navigate("EmployeeProfile", profile )
 
     }
-
-    
     
       return (
             <ScrollView>
@@ -79,7 +76,7 @@ export default function EmployerProfile(props)  {
                               <Text style={styles.text}>{user.firstName} {user.lastName}</Text>
                               <Text style={styles.textSecond}>Role: {user.jobRole}</Text>
                           </View>
-                          <TouchableOpacity userId={user._id} style={styles.ratings} onPress={() => onsubmit(user._id)}>
+                          <TouchableOpacity userId={user._id} style={styles.viewProfBtn} onPress={() => onsubmit(user._id)}>
                               <Text style={styles.btntxt}>View Profile</Text>
                           </TouchableOpacity>
                           </View>
@@ -101,8 +98,7 @@ export default function EmployerProfile(props)  {
         header: {
             fontSize: 24,
             color: "#fff",
-            paddingBottom: 10,
-            marginBottom: 20,
+            
             
         },
         appText: {
@@ -182,8 +178,9 @@ export default function EmployerProfile(props)  {
             borderRadius: 5,  
     
         },
-        ratings: {
+        viewProfBtn: {
             flex: 1,
+            textAlign: "center",
             alignItems: "center",
             justifyContent: "center",
             width: 100,
@@ -193,7 +190,8 @@ export default function EmployerProfile(props)  {
             margin: 10
         },
         btntxt: {
-            color: "#fff"
+            color: "#fff",
+            textAlign: "center"
         }
     })
     

@@ -21,6 +21,7 @@ export default function Colleagues(props) {
     const { getUsers, getAuthState } = useAuth();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [user, setUser] = useState({});
     const [users, setUsers] = useState({});
 
     useEffect(() => {
@@ -29,23 +30,34 @@ export default function Colleagues(props) {
    
     async function initialize() {
         try {
-            const users = await api.getUsers()
-            let  user = await getAuthState()
+            const user = await getAuthState()
 
-            if (users.users && user.user) {
-
-                let id = user.user._id
+            console.log(user, 'HERE IS OUR USER IN COLLEAGUES')
+            
+            if (user) {
                 let company = user.user.company
-                shownUsers = users.users.filter(elem => elem._id !== id && elem.company == company)
+                console.log(company)
+                setUser(user)
+                const companyUsers = await api.getCompanyUsers(company)
+                console.log(companyUsers, "this is company usrs")
+                if (companyUsers[0] && user.user) {
+                let id = user.user._id
+                console.log(id)
+                shownUsers = companyUsers.filter(elem => elem._id !== id)
                 setUsers(shownUsers)
-            } else {
+                console.log(users, "these are our users")
+                } else {
+                    setUsers({})
+                }
+            }
+            else {
                 initialize()
             }
-        } catch (error) {
-            console.log(error)
-        }
-    };
-
+            } catch (error) {
+                console.log(error)
+            }
+                    
+};
     onsubmit = (id) => {
 
         let profile = users.filter(elem => elem._id == id)
