@@ -43,15 +43,15 @@ export default function EmployerProfile(props)  {
                     const user = await getAuthState()
                     
                     if (user) {
+                        let company = user.user.company
                         setUser(user)
-                        console.log(user);
-                        const users = await api.getUsers()
-                        if (users.users && user.user) {
-
-                        let id = user.user._id
-                        shownUsers = users.users.filter(elem => elem._id !== id)
-                        console.log(shownUsers)
+                        const companyUsers = await api.getCompanyUsers(company)
+                        console.log(companyUsers, "this is company usrs")
+                        if (companyUsers[0] && user.user) {
+                        let id = user._id
+                        shownUsers = companyUsers.filter(elem => elem._id !== id)
                         setUsers(shownUsers)
+                        console.log(users, "these are our users")
                         } else {
                             setUsers({})
                         }
@@ -72,8 +72,6 @@ export default function EmployerProfile(props)  {
         navigation.navigate("EmployeeProfile", profile )
 
     }
-
-    
     
       return (
             <ScrollView style={{backgroundColor: "#fff"}}
