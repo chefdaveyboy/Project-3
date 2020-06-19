@@ -5,7 +5,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { useAuth } from "../../providers/auth";
 import * as api from "../../services/auth";
 import * as profileInfo from "../../services/auth";
-import tempImage from "../../assets/images/Fergal.jpg";
+import tempImage from "../../assets/images/default-profile.png";
 //Profile Components
 import ProfileHeader from "../../components/profile components/ProfileHeader";
 import Constants from 'expo-constants';
@@ -79,7 +79,7 @@ export default function EmployerProfile(props)  {
                 <RefreshControl refreshing={refreshing} onRefresh={_onRefresh}/>
             }
             >
-                <ProfileHeader name={user.user ? `${user.user.firstName}  ${user.user.lastName}` : "firstname lastname"} role={user.user ? user.user.jobRole : "role"} myUserId={user.user ? user.user._id : "id"}/>
+                <ProfileHeader name={user.user ? `${user.user.firstName}  ${user.user.lastName}` : "firstname lastname"} company={user.user ? user.user.company : "company"}  role={user.user ? user.user.jobRole : "role"} myUserId={user.user ? user.user._id : "id"}/>
                 <View style={styles.containerBottom}>
                 {users[0] ? users.map(user => (
                           <View key={user._id} style={styles.colleagueContainer} >

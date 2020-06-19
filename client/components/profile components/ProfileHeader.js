@@ -80,7 +80,7 @@ export default UpdateProfile = (props) => {
                     <TouchableOpacity>
 
                     </TouchableOpacity>
-                    <Text style={styles.employer}>Company: {props.employer}</Text>
+                    <Text style={styles.employer}>{props.company}</Text>
                     <Text style={styles.header}>{props.name}</Text>
                     <Text style={styles.text2}>Role: {props.role}</Text>
                     
