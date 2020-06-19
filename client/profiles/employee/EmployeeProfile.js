@@ -64,7 +64,7 @@ export default function EmployeeProfile(props)  {
     };
     
       return (
-            <ScrollView
+            <ScrollView style={{backgroundColor: "#fff"}}
                 refreshControl={
                     <RefreshControl refreshing={refreshing} onRefresh={_onRefresh}/>
                 }

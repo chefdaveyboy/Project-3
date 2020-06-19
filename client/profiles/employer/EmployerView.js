@@ -60,7 +60,7 @@ export default function EmployerView(props) {
     };
 
       return (
-            <ScrollView
+            <ScrollView style={{backgroundColor: "#fff"}}
             refreshControl={
                 <RefreshControl refreshing={refreshing} onRefresh={_onRefresh}/>
             }
@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
         
         backgroundColor: "#fff",
         alignItems: "center",
+        marginBottom: 100
     },
     
     

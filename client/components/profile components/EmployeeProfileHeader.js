@@ -5,6 +5,7 @@ import * as api from "../../services/auth";
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import {ErrorText} from "../../auth-components/Shared";
+import tempImage from "../../assets/images/default-profile.png";
 
 export default UpdateProfile = (props) => {
 
@@ -13,42 +14,15 @@ export default UpdateProfile = (props) => {
 
     const id = props.myUserId;
 
-    const uploadImage = async () => {
-        try {
-            console.log(id)
-            console.log("upload image before");
-            console.log(image);
-            let result = await api.updateProfileImage(id, image);
-            console.log(result);
-            console.log("upload image after");
-        } catch (error) {
-            setError(error.message);
-        }
-    }
+   
 
-    const showImagePicker = async () => {
-        try {
-            let result = await ImagePicker.launchImageLibraryAsync({
-                mediaTypes: ImagePicker.MediaTypeOptions.Images,
-                allowsEditing: true,
-                aspect: [4, 3],
-                quality: 1,
-            });
-
-            if (!result.cancelled && result) {
-                setImage(result.uri);
-                uploadImage(image);
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    };
+    
       return (
             
                 <View style={styles.container}>
                     
                         <Image
-                        source={image ? {uri: image} : props.image}
+                        source={image ? {uri: image} : tempImage}
                         style={styles.images}
                         />
                     
@@ -80,7 +54,7 @@ const styles = StyleSheet.create({
     text2: {
         fontSize: 18,
         color: "#A0CB59",
-        fontWeight: "900",
+        fontWeight: "bold",
         marginBottom: 20,
     },
     images: {

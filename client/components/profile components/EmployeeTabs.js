@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
-import tempImage from "../../assets/images/Fergal.jpg";
+import tempImage from "../../assets/images/default-profile.png";
 import { withNavigation } from "react-navigation-stack";
 
 
