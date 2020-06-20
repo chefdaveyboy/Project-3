@@ -18,7 +18,10 @@ export default function EmployerSignUp (props) {
         initialize()
     }, []);
    
-    async function initialize() {
+    async function initialize(state) {
+
+                state = initialState;
+                console.log(state, "HERE IS STATE")
 
                 try {
                     const user = await getAuthState()
@@ -76,7 +79,11 @@ export default function EmployerSignUp (props) {
             Alert.alert(
                 'Employee will receive email shortly',
                 response.message,
-                [{text: 'OK', onPress: () => navigation.replace("Login")}],
+                [{text: 'OK', onPress: () => {
+                    navigation.goBack(),
+                    state = initialState
+                    console.log(state)}
+                }],
                 {cancelable: false},
             );
 
@@ -91,9 +98,9 @@ export default function EmployerSignUp (props) {
         <ScrollView >
             <View style={styles.container}>
             <Header style={styles.header} title={"Employee Information"}/>
-            <ErrorText error={error}/>
             <Form {...formProps}>
             </Form>
+            <ErrorText error={error}/>
             </View>    
             
         </ScrollView>
@@ -127,7 +134,6 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: "#8459CB",
         marginTop: 15,
-        marginBottom: 30,
         borderRadius: 10,    
     },
     btntext: {
