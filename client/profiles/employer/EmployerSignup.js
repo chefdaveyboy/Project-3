@@ -1,5 +1,5 @@
 //FUTURE DEVELOPMENT
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect} from "react";
 import { Alert, StyleSheet, View, ScrollView } from "react-native";
 import Form, { TYPES } from 'react-native-basic-form';
 import { useAuth } from "../../providers/auth";
@@ -9,7 +9,7 @@ import {Header, ErrorText} from "../../auth-components/Shared";
 export default function EmployerSignUp (props) {
    
     const { navigation } = props;
-    const { getUsers, getAuthState } = useAuth();
+    const { getAuthState } = useAuth();
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState({})
@@ -18,7 +18,9 @@ export default function EmployerSignUp (props) {
         initialize()
     }, []);
    
-    async function initialize() {
+    async function initialize(state) {
+
+                console.log(state, "HERE IS STATE")
 
                 try {
                     const user = await getAuthState()
@@ -76,7 +78,10 @@ export default function EmployerSignUp (props) {
             Alert.alert(
                 'Employee will receive email shortly',
                 response.message,
-                [{text: 'OK', onPress: () => navigation.replace("Login")}],
+                [{text: 'OK', onPress: () => {
+                    navigation.goBack(),
+                    console.log(state)}
+                }],
                 {cancelable: false},
             );
 
@@ -91,9 +96,9 @@ export default function EmployerSignUp (props) {
         <ScrollView >
             <View style={styles.container}>
             <Header style={styles.header} title={"Employee Information"}/>
-            <ErrorText error={error}/>
             <Form {...formProps}>
             </Form>
+            <ErrorText error={error}/>
             </View>    
             
         </ScrollView>
@@ -127,7 +132,6 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: "#8459CB",
         marginTop: 15,
-        marginBottom: 30,
         borderRadius: 10,    
     },
     btntext: {

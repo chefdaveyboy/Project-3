@@ -3,9 +3,6 @@ import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "reac
 // import { useAuth } from "../../providers/auth";
 import * as api from "../../services/auth";
 import * as ImagePicker from 'expo-image-picker';
-import * as Permissions from 'expo-permissions';
-import {ErrorText} from "../../auth-components/Shared";
-import tempImage from "../../assets/images/default-profile.png";
 
 export default UpdateProfile = (props) => {
 
@@ -13,6 +10,7 @@ export default UpdateProfile = (props) => {
     const [error, setError] = useState(null);
 
     const id = props.myUserId;
+    console.log(props, "these are our props")
 
     const uploadImage = async (data) => {
         try {
@@ -73,7 +71,7 @@ export default UpdateProfile = (props) => {
                 <View style={styles.container}>
                     <TouchableOpacity onPress={showImagePicker}>
                         <Image
-                        source={image ? {uri: image} : tempImage}
+                        source={image ? {uri: image} : props.profileImage}
                         style={styles.images}
                         />
                     </TouchableOpacity>
