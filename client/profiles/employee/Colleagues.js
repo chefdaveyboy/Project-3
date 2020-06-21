@@ -1,26 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import tempImage from "../../assets/images/Fergal.jpg";
 import { ScrollView } from 'react-native-gesture-handler';
 import { useAuth } from "../../providers/auth";
 import * as api from "../../services/auth";
-import {NagivationContainer, NavigationEvents} from "react-navigation";
-import {createStackNavigator} from "react-navigation";
 import Constants from 'expo-constants';
-
-// Profile Components
-
-import EmployeeTabs from "../../components/profile components/EmployeeTabs";
-import EmployeeProfile from "../../profiles/employee/Employee2Profile";
-
 
 export default function Colleagues(props) {
    
     const { navigation } = props;
-    const { navigate } = navigation;
-    const { getUsers, getAuthState } = useAuth();
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const {getAuthState } = useAuth();
     const [user, setUser] = useState({});
     const [users, setUsers] = useState({});
 
@@ -36,16 +25,13 @@ export default function Colleagues(props) {
             
             if (user) {
                 let company = user.user.company
-                console.log(company)
+
                 setUser(user)
                 const companyUsers = await api.getCompanyUsers(company)
-                console.log(companyUsers, "this is company usrs")
                 if (companyUsers[0] && user.user) {
                 let id = user.user._id
-                console.log(id)
                 shownUsers = companyUsers.filter(elem => elem._id !== id)
                 setUsers(shownUsers)
-                console.log(users, "these are our users")
                 } else {
                     setUsers({})
                 }
@@ -71,7 +57,7 @@ export default function Colleagues(props) {
                           <View key={user._id} style={styles.colleagueContainer} >
                           
                           <Image
-                          source={tempImage}
+                          source={user.profileImage ? {uri: user.profileImage} : tempImage}
                           style={styles.images}
                           />
                           <View style={styles.containerInner}>

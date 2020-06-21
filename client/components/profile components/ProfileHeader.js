@@ -3,8 +3,6 @@ import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "reac
 // import { useAuth } from "../../providers/auth";
 import * as api from "../../services/auth";
 import * as ImagePicker from 'expo-image-picker';
-import * as Permissions from 'expo-permissions';
-import {ErrorText} from "../../auth-components/Shared";
 
 export default UpdateProfile = (props) => {
 
@@ -12,6 +10,7 @@ export default UpdateProfile = (props) => {
     const [error, setError] = useState(null);
 
     const id = props.myUserId;
+    console.log(props, "these are our props")
 
     const uploadImage = async (data) => {
         try {
@@ -34,28 +33,55 @@ export default UpdateProfile = (props) => {
                 quality: 1,
             });
             if (!result.cancelled) {
+                
                 setImage(result.uri);
-                let data = image;
-                uploadImage(data);
+                let data = {
+                    uri: result.uri,
+                    type: `image/${result.uri.split(".")[1]}`,
+                    name: `image/${result.uri.split(".")[1]}`
+                }
+                
+                handleUpload(data);
+                console.log(data);
+                
             }
         } catch (error) {
             console.log(error)
         }
     };
+
+    const handleUpload = (image) => {
+        const data = new FormData()
+        data.append('file', image)
+        data.append('upload_preset', 'level-up-coding-rd')
+        data.append('cloud_name', 'level-up-coding-rd')
+
+        fetch("https://api.cloudinary.com/v1_1/level-up-coding-rd/image/upload", {
+            method: "post",
+            body: data
+        }).then(res => res.json())
+        .then(data => {
+            console.log(data.url);
+            uploadImage(data.url);
+        })
+    }
+
       return (
             
                 <View style={styles.container}>
                     <TouchableOpacity onPress={showImagePicker}>
                         <Image
-                        source={image ? {uri: image} : props.image}
+                        source={image ? {uri: image} : props.profileImage}
                         style={styles.images}
                         />
                     </TouchableOpacity>
                     <TouchableOpacity>
 
                     </TouchableOpacity>
+                    <Text style={styles.employer}>{props.company}</Text>
                     <Text style={styles.header}>{props.name}</Text>
                     <Text style={styles.text2}>Role: {props.role}</Text>
+                    
                 </View>
             
         
@@ -66,10 +92,17 @@ export default UpdateProfile = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        
         backgroundColor: "#8459CB",
         alignItems: "center",
+        
            
+    },
+    employer: {
+        fontSize: 30,
+        color: "#fff",
+        paddingBottom: 10,
+        marginBottom: 5
+
     },
     header: {
         fontSize: 24,
@@ -81,11 +114,11 @@ const styles = StyleSheet.create({
     text2: {
         fontSize: 18,
         color: "#A0CB59",
-        fontWeight: "900",
+        fontWeight: "bold",
         marginBottom: 20,
     },
     images: {
-        
+        color: "#fff",
         marginTop: 50,
         width: 150,
         height: 150,

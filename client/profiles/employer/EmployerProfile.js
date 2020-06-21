@@ -1,14 +1,12 @@
-//FUTURE DEVELOPMENT
+
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image, RefreshControl } from "react-native";
 import { ScrollView } from 'react-native-gesture-handler';
 import { useAuth } from "../../providers/auth";
 import * as api from "../../services/auth";
-import * as profileInfo from "../../services/auth";
-import tempImage from "../../assets/images/Fergal.jpg";
+import tempImage from "../../assets/images/default-profile.png";
 //Profile Components
 import ProfileHeader from "../../components/profile components/ProfileHeader";
-import Constants from 'expo-constants';
 
 
 export default function EmployerProfile(props)  {
@@ -20,15 +18,29 @@ export default function EmployerProfile(props)  {
     const [error, setError] = useState(null);
     const [user, setUser] = useState({});
     const [users, setUsers] = useState({});
+    const [refreshing, setRefresh]  = React.useState(false);
     
+    const _onRefresh = React.useCallback(() => {
+        setRefresh(true);
+
+        initialize().then(() => 
+        setRefresh(false)
+        );
+    }, [refreshing]);
+
     useEffect(() => {
-        initialize()
+        initialize();
+        return function cleanup() {
+            setRefresh(false);
+        }
     }, []);
    
     async function initialize() {
 
                 try {
                     const user = await getAuthState()
+                    console.log(user)
+                    console.log(user.user.profileImage, "This should be our image source")
                     
                     if (user) {
                         let company = user.user.company
@@ -62,14 +74,23 @@ export default function EmployerProfile(props)  {
     }
     
       return (
-            <ScrollView>
-                <ProfileHeader name={user.user ? `${user.user.firstName}  ${user.user.lastName}` : "firstname lastname"} role={user.user ? user.user.jobRole : "role"} myUserId={user.user ? user.user._id : "id"}/>
+            <ScrollView style={{backgroundColor: "#fff"}}
+            refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={_onRefresh}/>
+            }
+            >
+                <ProfileHeader name={user.user ? `${user.user.firstName}  ${user.user.lastName}` : "firstname lastname"} 
+                                company={user.user ? user.user.company : "company"}  
+                                role={user.user ? user.user.jobRole : "role"} 
+                                myUserId={user.user ? user.user._id : "id"}
+                                profileImage={(!user.user) ? tempImage : (!user.user.profileImage) ? tempImage : {uri: user.user.profileImage}}
+                                />
                 <View style={styles.containerBottom}>
                 {users[0] ? users.map(user => (
                           <View key={user._id} style={styles.colleagueContainer} >
                           
                           <Image
-                          source={tempImage}
+                          source={user.profileImage ? {uri: user.profileImage} : tempImage}
                           style={styles.images}
                           />
                           <View style={styles.containerInner}>
@@ -90,8 +111,7 @@ export default function EmployerProfile(props)  {
       const styles = StyleSheet.create({
     
         containerBottom: {
-            flex: 1,
-            marginTop: Constants.statusBarHeight,
+            marginTop: 20,
             backgroundColor: "#fff",
             alignItems: "center",
         },

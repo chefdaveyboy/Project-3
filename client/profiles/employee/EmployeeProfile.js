@@ -1,20 +1,18 @@
 
-import React, { useState, useEffect, useCallback } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, RefreshControl } from "react-native";
+import React, { useState, useEffect} from "react";
+import { StyleSheet, Text, View, RefreshControl } from "react-native";
 import { ScrollView } from 'react-native-gesture-handler';
 import { useAuth } from "../../providers/auth";
 import * as api from "../../services/rating";
-import tempImage from "../../assets/images/Fergal.jpg";
+import tempImage from "../../assets/images/default-profile.png";
 //Profile Components
 import ProfileHeader from "../../components/profile components/ProfileHeader";
 import Skills from "../../components/profile components/SelfProfile/profileSkill";
-import { withNavigation } from "react-navigation";
 
 export default function EmployeeProfile(props)  {
     
-    const { handleLogout, getAuthState } = useAuth();
+    const { getAuthState } = useAuth();
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
     const [user, setUser] = useState({});
     const [ratings, setRatings] = useState({})
     const [refreshing, setRefresh]  = React.useState(false);
@@ -64,12 +62,17 @@ export default function EmployeeProfile(props)  {
     };
     
       return (
-            <ScrollView
+            <ScrollView style={{backgroundColor: "#fff"}}
                 refreshControl={
                     <RefreshControl refreshing={refreshing} onRefresh={_onRefresh}/>
                 }
             >
-                <ProfileHeader image={user.user ? `${user.user.profileImage}` : tempImage} name={user.user ? `${user.user.firstName}  ${user.user.lastName}` : "firstname lastname"} role={user.user ? user.user.jobRole : "role"} myUserId={user.user ? user.user._id : "id"}/>
+                <ProfileHeader name={user.user ? `${user.user.firstName}  ${user.user.lastName}` : "firstname lastname"} 
+                                company={user.user ? user.user.company : "company"}  
+                                role={user.user ? user.user.jobRole : "role"} 
+                                myUserId={user.user ? user.user._id : "id"}
+                                profileImage={(!user.user) ? tempImage : (!user.user.profileImage) ? tempImage : {uri: user.user.profileImage}}
+                                />
                 <View style={styles.containerBottom}>
                     {ratings[0] ? ratings.map(rating => 
                     <Skills number={rating.total} rating={rating.avgRat} skill={rating.skill} key={rating.skill} keyName={rating.skill}/>)

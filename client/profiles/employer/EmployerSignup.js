@@ -1,5 +1,5 @@
 //FUTURE DEVELOPMENT
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect} from "react";
 import { Alert, StyleSheet, View, ScrollView } from "react-native";
 import Form, { TYPES } from 'react-native-basic-form';
 import { useAuth } from "../../providers/auth";
@@ -9,7 +9,7 @@ import {Header, ErrorText} from "../../auth-components/Shared";
 export default function EmployerSignUp (props) {
    
     const { navigation } = props;
-    const { getUsers, getAuthState } = useAuth();
+    const { getAuthState } = useAuth();
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState({})
@@ -20,7 +20,6 @@ export default function EmployerSignUp (props) {
    
     async function initialize(state) {
 
-                state = initialState;
                 console.log(state, "HERE IS STATE")
 
                 try {
@@ -81,7 +80,6 @@ export default function EmployerSignUp (props) {
                 response.message,
                 [{text: 'OK', onPress: () => {
                     navigation.goBack(),
-                    state = initialState
                     console.log(state)}
                 }],
                 {cancelable: false},
