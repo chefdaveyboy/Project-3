@@ -71,6 +71,7 @@ export default UpdateProfile = (props) => {
       return (
             
                 <View style={styles.container}>
+                    <Text style={styles.employer}>{props.company}</Text>
                     <TouchableOpacity onPress={showImagePicker}>
                         <Image
                         source={image ? {uri: image} : tempImage}
@@ -80,7 +81,7 @@ export default UpdateProfile = (props) => {
                     <TouchableOpacity>
 
                     </TouchableOpacity>
-                    <Text style={styles.employer}>{props.company}</Text>
+                    
                     <Text style={styles.header}>{props.name}</Text>
                     <Text style={styles.text2}>Role: {props.role}</Text>
                     
@@ -101,9 +102,11 @@ const styles = StyleSheet.create({
     },
     employer: {
         fontSize: 30,
-        color: "#fff",
+        color: "#59cbbd",
+        fontWeight: "bold",
         paddingBottom: 10,
-        marginBottom: 5
+        marginBottom: 5,
+        marginTop: 25
 
     },
     header: {
@@ -121,7 +124,7 @@ const styles = StyleSheet.create({
     },
     images: {
         color: "#fff",
-        marginTop: 50,
+        marginTop: 20,
         width: 150,
         height: 150,
         borderRadius: 75,

@@ -76,7 +76,7 @@ export default function EmployerSignUp (props) {
             Alert.alert(
                 'Employee will receive email shortly',
                 response.message,
-                [{text: 'OK', onPress: () => navigation.replace("Login")}],
+                [{text: 'OK', onPress: () => navigation.goBack("AddEmployees")}, initialize()],
                 {cancelable: false},
             );
 
