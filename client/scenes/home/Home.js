@@ -1,5 +1,5 @@
-import React from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useState, useContext } from "react";
+import { Text, View, ScrollView, Button, ActivityIndicator, Alert, StyleSheet, TouchableOpacity } from "react-native";
 
 import { useAuth } from "../../providers/auth";
 
@@ -14,6 +14,7 @@ import EmployerBottomTab from "../../employer navigation/EmployerBottomTab";
 const Stack = createStackNavigator();
 
 export default function Home(props) {
+    
 
     const [initialNavigationState] = React.useState();
     const containerRef = React.useRef();

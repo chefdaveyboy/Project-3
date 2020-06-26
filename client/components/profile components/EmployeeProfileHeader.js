@@ -29,9 +29,9 @@ export default UpdateProfile = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        
         backgroundColor: "#8459CB",
         alignItems: "center",
+        borderRadius: 10
            
     },
     header: {
