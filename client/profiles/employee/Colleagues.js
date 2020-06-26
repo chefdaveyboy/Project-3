@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
-import tempImage from "../../assets/images/Fergal.jpg";
+import tempImage from "../../assets/images/default-profile.png";
 import { ScrollView } from 'react-native-gesture-handler';
 import { useAuth } from "../../providers/auth";
 import * as api from "../../services/auth";
