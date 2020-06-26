@@ -1,20 +1,10 @@
 import React, { useState } from "react";
-import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
-// import { useAuth } from "../../providers/auth";
-import * as api from "../../services/auth";
-import * as ImagePicker from 'expo-image-picker';
-import * as Permissions from 'expo-permissions';
-import {ErrorText} from "../../auth-components/Shared";
-import tempImage from "../../assets/images/default-profile.png";
+import { StyleSheet, Text, View, Image } from "react-native";
 
 export default UpdateProfile = (props) => {
 
     const [image, setImage] = useState(null);
     const [error, setError] = useState(null);
-
-    const id = props.myUserId;
-
-   
 
     
       return (
@@ -22,7 +12,7 @@ export default UpdateProfile = (props) => {
                 <View style={styles.container}>
                     
                         <Image
-                        source={image ? {uri: image} : tempImage}
+                        source={image ? {uri: image} : props.profileImage}
                         style={styles.images}
                         />
                     
@@ -39,9 +29,9 @@ export default UpdateProfile = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        
         backgroundColor: "#8459CB",
         alignItems: "center",
+        borderRadius: 10
            
     },
     header: {

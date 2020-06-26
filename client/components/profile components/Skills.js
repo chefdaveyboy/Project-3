@@ -91,7 +91,7 @@ export default function Skills(props) {
     }
             </View>
             <TouchableOpacity style={disabled ? styles.disabledRatings : styles.ratings} disabled={disabled} onPress={isPressed} onPressIn={isPressedIn}>
-                <Text style={styles.btntxt}><Ionicons name="md-star"/></Text>
+                <Text style={styles.btntxt}><Ionicons name="md-checkmark"/></Text>
             </TouchableOpacity>
             
             

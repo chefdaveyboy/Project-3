@@ -1,19 +1,18 @@
-import React, { useState } from "react";
-import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
-
+import React from "react";
+import { StyleSheet, View}  from "react-native";
+import tempImage from "../../assets/images/default-profile.png";
 import { ScrollView } from 'react-native-gesture-handler';
 
 // Profile Components
 import ProfileHeader from "../../components/profile components/EmployeeProfileHeader";
 import SkillSet from "../../components/profile components/SkillSet";
-import SkillsContainer from "../../components/profile components/skillsContainer";
 
 export default function Employee2Profile(props) {
     let userInfo = props.route.params[0]
 
       return (
             <ScrollView style={{backgroundColor: "#fff"}}>
-                <ProfileHeader name={`${userInfo.firstName} ${userInfo.lastName}`} role={userInfo.jobRole}/>
+                <ProfileHeader name={`${userInfo.firstName} ${userInfo.lastName}`} role={userInfo.jobRole} profileImage={userInfo.profileImage ? {uri: userInfo.profileImage} : tempImage}/>
                 <View style={styles.containerMiddle}>
                     
                    

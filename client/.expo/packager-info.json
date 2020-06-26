@@ -1,10 +1,10 @@
 {
-  "expoServerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
-  "packagerPort": null,
-  "packagerPid": null,
+  "expoServerPort": 19000,
+  "expoServerNgrokUrl": "https://95-2xm.david-koeller.client.exp.direct",
+  "packagerNgrokUrl": "https://packager.95-2xm.david-koeller.client.exp.direct",
+  "ngrokPid": 23248,
+  "packagerPort": 19001,
+  "packagerPid": 7320,
   "webpackServerPort": null,
   "devToolsPort": 19002
 }
