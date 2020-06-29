@@ -1,14 +1,11 @@
-//NOT THE PROBLEM
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import { createAppContainer, createSwitchNavigator} from 'react-navigation';
 import TabBarIcon from '../components/TabBarIcon';
 
 
 import EmployerProfile from "../profiles/employer/EmployerProfile"
 import AddEmployees from '../profiles/employer/EmployerSignup';
 import EmployerView from "../profiles/employer/EmployerView";
-import { useLinkProps } from '@react-navigation/native';
 import { BottomTabBar } from "@react-navigation/bottom-tabs";
 
 

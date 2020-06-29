@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
-// import { useAuth } from "../../providers/auth";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import * as api from "../../services/auth";
 import * as ImagePicker from 'expo-image-picker';
 
@@ -10,15 +9,10 @@ export default UpdateProfile = (props) => {
     const [error, setError] = useState(null);
 
     const id = props.myUserId;
-    console.log(props, "these are our props")
 
     const uploadImage = async (data) => {
         try {
-            console.log("upload image before");
-            console.log(data);
             let result = await api.updateProfileImage(id, data);
-            console.log(result);
-            console.log("upload image after");
         } catch (error) {
             setError(error.message);
         }
@@ -41,8 +35,7 @@ export default UpdateProfile = (props) => {
                     name: `image/${result.uri.split(".")[1]}`
                 }
                 
-                handleUpload(data);
-                console.log(data);
+                handleUpload(data); 
                 
             }
         } catch (error) {
@@ -61,7 +54,6 @@ export default UpdateProfile = (props) => {
             body: data
         }).then(res => res.json())
         .then(data => {
-            console.log(data.url);
             uploadImage(data.url);
         })
     }
@@ -69,6 +61,7 @@ export default UpdateProfile = (props) => {
       return (
             
                 <View style={styles.container}>
+                    <Text style={styles.employer}>{props.company}</Text>
                     <TouchableOpacity onPress={showImagePicker}>
                         <Image
                         source={image ? {uri: image} : props.profileImage}
@@ -78,7 +71,7 @@ export default UpdateProfile = (props) => {
                     <TouchableOpacity>
 
                     </TouchableOpacity>
-                    <Text style={styles.employer}>{props.company}</Text>
+                    
                     <Text style={styles.header}>{props.name}</Text>
                     <Text style={styles.text2}>Role: {props.role}</Text>
                     
@@ -94,14 +87,16 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: "#8459CB",
         alignItems: "center",
-        
+        borderRadius: 10
            
     },
     employer: {
         fontSize: 30,
-        color: "#fff",
+        color: "#59cbbd",
+        fontWeight: "bold",
         paddingBottom: 10,
-        marginBottom: 5
+        marginBottom: 5,
+        marginTop: 25
 
     },
     header: {
@@ -119,7 +114,7 @@ const styles = StyleSheet.create({
     },
     images: {
         color: "#fff",
-        marginTop: 50,
+        marginTop: 20,
         width: 150,
         height: 150,
         borderRadius: 75,

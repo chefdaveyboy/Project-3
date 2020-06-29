@@ -36,7 +36,6 @@ export default function Login(props) {
             else navigation.replace('Login');
         } catch (error) {
             setError(error.message);
-            console.log(error.message)
             setLoading(false)
         }
     }

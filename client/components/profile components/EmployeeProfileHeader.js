@@ -4,8 +4,6 @@ import { StyleSheet, Text, View, Image } from "react-native";
 export default UpdateProfile = (props) => {
 
     const [image, setImage] = useState(null);
-    const [error, setError] = useState(null);
-
     
       return (
             
@@ -29,9 +27,9 @@ export default UpdateProfile = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        
         backgroundColor: "#8459CB",
         alignItems: "center",
+        borderRadius: 10
            
     },
     header: {
