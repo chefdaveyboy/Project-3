@@ -42,7 +42,6 @@ export default function EmployerSignUp (props) {
         
                     if (user) {
                         setUser(user.user)
-                        
                     }
                 } catch (error) {
                     console.log(error)
@@ -93,9 +92,8 @@ export default function EmployerSignUp (props) {
             Alert.alert(
                 'Employee will receive email shortly',
                 response.message,
-                [{text: 'OK', onPress: () => {
-                    navigation.goBack(),
-                    console.log(state)}
+                [{text: 'OK', onPress: () =>
+                    navigation.goBack()
                 }],
                 {cancelable: false},
             );

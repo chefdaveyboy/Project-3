@@ -14,8 +14,6 @@ export async function register(data){
 
 export async function registerEmployee(data, company) {
     try {
-
-        console.log(data, company, "HERE IS OUR DATA")
         let res = await axios.post(c.REGISTER_EMPLOYEE, data, company);
 
         return res.data;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image, RefreshControl } from "react-native";
-import tempImage from "../../assets/images/default-profile.png";
+import tempImage from "../../assets/images/default-profile.png"
 import { ScrollView } from 'react-native-gesture-handler';
 import { useAuth } from "../../providers/auth";
 import * as api from "../../services/auth";
@@ -32,8 +32,6 @@ export default function Colleagues(props) {
     async function initialize() {
         try {
             const user = await getAuthState()
-
-            
             
             if (user) {
                 let company = user.user.company

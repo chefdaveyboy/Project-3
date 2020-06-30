@@ -39,19 +39,15 @@ export default function EmployerProfile(props)  {
 
                 try {
                     const user = await getAuthState()
-                    console.log(user)
-                    console.log(user.user.profileImage, "This should be our image source")
                     
                     if (user) {
                         let company = user.user.company
                         setUser(user)
                         const companyUsers = await api.getCompanyUsers(company)
-                        console.log(companyUsers, "this is company usrs")
                         if (companyUsers[0] && user.user) {
                         let id = user._id
                         shownUsers = companyUsers.filter(elem => elem._id !== id)
                         setUsers(shownUsers)
-                        console.log(users, "these are our users")
                         } else {
                             setUsers({})
                         }

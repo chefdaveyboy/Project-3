@@ -5,7 +5,6 @@ import * as c from '../constants';
 
 export async function submitRating(userId, data) {
     try {
-        console.log("made it here - to submit rating")
 
         let res = await axios.post(`${c.SUBMIT_RATING}/${userId}`, data);
 
@@ -17,7 +16,6 @@ export async function submitRating(userId, data) {
 
 export async function getAvgRatings(userId) {
     try {
-        console.log('getting here')
         let res = await axios.get(`${c.GET_AVG}/${userId}`);
 
         return res.data;

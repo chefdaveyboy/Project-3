@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
-// import { useAuth } from "../../providers/auth";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import * as api from "../../services/auth";
 import * as ImagePicker from 'expo-image-picker';
 
@@ -14,7 +13,6 @@ export default UpdateProfile = (props) => {
     const uploadImage = async (data) => {
         try {
             let result = await api.updateProfileImage(id, data);
-            console.log(result);
         } catch (error) {
             setError(error.message);
         }
@@ -37,8 +35,7 @@ export default UpdateProfile = (props) => {
                     name: `image/${result.uri.split(".")[1]}`
                 }
                 
-                handleUpload(data);
-                
+                handleUpload(data); 
                 
             }
         } catch (error) {

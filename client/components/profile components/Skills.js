@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
-import Rating from "../profile components/Rating";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import * as api from "../../services/rating"
 import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from "../../providers/auth"; 
@@ -55,7 +54,6 @@ export default function Skills(props) {
                     postedBy: postedBy
 
                 }
-                console.log(postedBy, "THIS IS POSTED BY")
 
         try {
             let response = await api.submitRating(userId, data);

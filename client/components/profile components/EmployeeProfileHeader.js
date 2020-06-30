@@ -4,8 +4,6 @@ import { StyleSheet, Text, View, Image } from "react-native";
 export default UpdateProfile = (props) => {
 
     const [image, setImage] = useState(null);
-    const [error, setError] = useState(null);
-
     
       return (
             

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
+import React from "react";
+import { View } from "react-native";
 import DropdownMenu from "react-native-dropdown-menu";
 
 import SkillsJson from "../skills.json";
@@ -60,7 +60,6 @@ export default class SkillSet extends React.Component {
                     >
                     <View style={{flex: 1}}>
                         <SkillsContainer skillsdata={indexValue} id={this.props.id}>
-                            {console.log(this.props.id, "THIS IS SKILLSET")}
                             </SkillsContainer>
                      
                     </View>
