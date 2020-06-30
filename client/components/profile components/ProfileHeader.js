@@ -10,15 +10,11 @@ export default UpdateProfile = (props) => {
     const [error, setError] = useState(null);
 
     const id = props.myUserId;
-    console.log(props, "these are our props")
 
     const uploadImage = async (data) => {
         try {
-            console.log("upload image before");
-            console.log(data);
             let result = await api.updateProfileImage(id, data);
             console.log(result);
-            console.log("upload image after");
         } catch (error) {
             setError(error.message);
         }
@@ -42,7 +38,7 @@ export default UpdateProfile = (props) => {
                 }
                 
                 handleUpload(data);
-                console.log(data);
+                
                 
             }
         } catch (error) {
@@ -61,7 +57,6 @@ export default UpdateProfile = (props) => {
             body: data
         }).then(res => res.json())
         .then(data => {
-            console.log(data.url);
             uploadImage(data.url);
         })
     }

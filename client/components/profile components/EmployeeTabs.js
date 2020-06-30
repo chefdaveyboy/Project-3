@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
 import tempImage from "../../assets/images/default-profile.png";
-import { withNavigation } from "react-navigation-stack";
+
 
 
 
 const EmployeeTabs = props => {
-    // const {navigation} = props;
-    // const {navigate} = navigation;
-    const [user, setUser] = useState(undefined)
 
     
       return (
