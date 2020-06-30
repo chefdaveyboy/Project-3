@@ -33,7 +33,6 @@ export default function EmployerView(props) {
 
         try {
             const user = userInfo._id;
-            console.log(userInfo)
 
             if (user) {
                 setUser(user)

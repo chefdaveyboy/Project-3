@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Platform, StatusBar, StyleSheet, View, ScrollView, RefreshControl } from 'react-native';
+import React  from 'react';
+import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { SplashScreen } from 'expo';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
@@ -17,7 +17,6 @@ import HomeStack from "./routes/home";
 
 import AuthLoading from "./scenes/auth/AuthLoading";
 import AuthProvider from "./providers/auth";
-import { State } from 'react-native-gesture-handler';
 
 const AppStack = createSwitchNavigator(
   {

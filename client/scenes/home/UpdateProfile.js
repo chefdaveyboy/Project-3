@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import {View, Constants, Image} from 'react-native';
+import { View } from 'react-native';
 import * as api from "../../services/auth";
 import { useAuth } from "../../providers/auth";
 import Form, {TYPES} from 'react-native-basic-form';
-import {ErrorText} from "../../auth-components/Shared";
-import * as ImagePicker from 'expo-image-picker';
-import * as Permissions from 'expo-permissions';
+import { ErrorText } from "../../auth-components/Shared";
 
 export default function UpdateProfile (props) {
     const {navigation} = props;

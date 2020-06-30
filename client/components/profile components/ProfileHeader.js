@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
-// import { useAuth } from "../../providers/auth";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import * as api from "../../services/auth";
 import * as ImagePicker from 'expo-image-picker';
 
@@ -10,15 +9,10 @@ export default UpdateProfile = (props) => {
     const [error, setError] = useState(null);
 
     const id = props.myUserId;
-    console.log(props, "these are our props")
 
     const uploadImage = async (data) => {
         try {
-            console.log("upload image before");
-            console.log(data);
             let result = await api.updateProfileImage(id, data);
-            console.log(result);
-            console.log("upload image after");
         } catch (error) {
             setError(error.message);
         }
@@ -41,8 +35,7 @@ export default UpdateProfile = (props) => {
                     name: `image/${result.uri.split(".")[1]}`
                 }
                 
-                handleUpload(data);
-                console.log(data);
+                handleUpload(data); 
                 
             }
         } catch (error) {
@@ -61,7 +54,6 @@ export default UpdateProfile = (props) => {
             body: data
         }).then(res => res.json())
         .then(data => {
-            console.log(data.url);
             uploadImage(data.url);
         })
     }

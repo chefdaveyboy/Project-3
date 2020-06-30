@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { StyleSheet, TextInput, Text, View, TouchableOpacity, Image } from "react-native";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 
 import SkillsJson from "../skills.json";
 
@@ -20,7 +20,7 @@ export default class Employee2Profile extends React.Component {
       return (
                 
                 <View style={styles.containerBottom}>
-                    {console.log(this.props.id, "SKILLSCONTAINER"),this.state.SkillsJson[this.props.skillsdata].skills.map(data => (
+                    {this.state.SkillsJson[this.props.skillsdata].skills.map(data => (
                         
                         <Skills 
                         key={data.name}
