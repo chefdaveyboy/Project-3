@@ -1,11 +1,9 @@
 {
   "expo": {
-    "name": "Project-3",
-    "slug": "Project-3",
+    "name": "Level Up Coding",
+    "slug": "LUC",
     "platforms": [
-      "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -23,9 +21,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     },
     "android": {
+      "package": "com.RNDDevlopment.LevelUpCoding",
+      "versionCode": 1,
       "permissions": [
         "CAMERA",
         "READ_EXTERNAL_STORAGE",
