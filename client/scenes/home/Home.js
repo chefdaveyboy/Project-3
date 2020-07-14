@@ -67,10 +67,12 @@ const styles = StyleSheet.create({
 
     },
     buttonContainer: {
-        
+        alignItems: "center",
         backgroundColor: "#fff",
         flexDirection: "row",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        marginTop: 20,
+        marginBottom: 20
     },
     button1: {
         width: 150,
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: "#59cbbd",
         borderRadius: 10,
-        margin: 20
+        
         
     },
     button2: {
@@ -89,7 +91,7 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: "#A0CB59",
         borderRadius: 10,
-        margin: 20
+        
         
     },
     btntext: {
