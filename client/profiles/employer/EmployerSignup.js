@@ -1,9 +1,10 @@
 import React, { useState, useEffect} from "react";
-import { Alert, StyleSheet, View, ScrollView } from "react-native";
+import { Alert, StyleSheet, View, ScrollView, RefreshControl } from "react-native";
 import Form, { TYPES } from 'react-native-basic-form';
 import { useAuth } from "../../providers/auth";
 import * as api from "../../services/auth";
 import {Header, ErrorText} from "../../auth-components/Shared";
+import { reset } from "expo/build/AR";
 
 export default function EmployerSignUp (props) {
    
@@ -11,13 +12,32 @@ export default function EmployerSignUp (props) {
     const { getAuthState } = useAuth();
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState({});
+    const [refreshing, setRefresh]  = React.useState(false);
+
+    const _onRefresh = React.useCallback(() => {
+        setRefresh(true);
+        reset();
+        initialize().then(() => 
+        setRefresh(false)
+        );
+    }, [refreshing]);
+
+    
 
     useEffect(() => {
-        initialize()
+        initialize();
+        
+        return function cleanup() {
+            setRefresh(false);
+        }
     }, []);
    
     async function initialize() {
+<<<<<<< HEAD
+
+=======
+>>>>>>> 9df94df366c87614f7a5338dab37bff58e1f94a4
 
                 try {
                     const user = await getAuthState()
@@ -88,7 +108,11 @@ export default function EmployerSignUp (props) {
 
     let formProps = {title: "Add Employee", fields, onSubmit, loading, style: styles.textinput, buttonStyle: styles.button};
     return (
-        <ScrollView >
+        <ScrollView 
+            refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={_onRefresh}/>
+            }
+        >
             <View style={styles.container}>
             <Header style={styles.header} title={"Employee Information"}/>
             <Form {...formProps}>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image, RefreshControl } from "react-native";
 import tempImage from "../../assets/images/default-profile.png"
 import { ScrollView } from 'react-native-gesture-handler';
 import { useAuth } from "../../providers/auth";
@@ -12,9 +12,21 @@ export default function Colleagues(props) {
     const {getAuthState } = useAuth();
     const [user, setUser] = useState({});
     const [users, setUsers] = useState({});
+    const [refreshing, setRefresh]  = React.useState(false);
+
+    const _onRefresh = React.useCallback(() => {
+        setRefresh(true);
+
+        initialize().then(() => 
+        setRefresh(false)
+        );
+    }, [refreshing]);
 
     useEffect(() => {
-        initialize()
+        initialize();
+        return function cleanup() {
+            setRefresh(false);
+        }
     }, []);
    
     async function initialize() {
@@ -49,7 +61,11 @@ export default function Colleagues(props) {
 
     }
           return (
-              <ScrollView style={{flex: 2, backgroundColor: '#fff'}}>
+              <ScrollView style={{flex: 2, backgroundColor: '#fff'}}
+                refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={_onRefresh}/>
+                }
+              >
                   <View style={styles.containerBottom}>
                       {users[0] ? users.map(user => (
                           <View key={user._id} style={styles.colleagueContainer} >
