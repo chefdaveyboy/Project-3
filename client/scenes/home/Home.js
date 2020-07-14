@@ -26,7 +26,7 @@ export default function Home(props) {
     const user = state.user;
 
     return (
-        <View style={{flex: 1, paddingHorizontal: 16, backgroundColor:"#fff"}}>
+        <View style={{flex: 1, backgroundColor:"#fff"}}>
             <View style={{flex:1}}>
                 <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.button2} onPress={() => {

@@ -1,4 +1,3 @@
-//FUTURE DEVELOPMENT
 import React, { useState, useEffect} from "react";
 import { Alert, StyleSheet, View, ScrollView, RefreshControl } from "react-native";
 import Form, { TYPES } from 'react-native-basic-form';
@@ -35,7 +34,10 @@ export default function EmployerSignUp (props) {
     }, []);
    
     async function initialize() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9df94df366c87614f7a5338dab37bff58e1f94a4
 
                 try {
                     const user = await getAuthState()
@@ -82,12 +84,12 @@ export default function EmployerSignUp (props) {
         {name: 'company', label: 'Company', required: true, type: TYPES.Dropdown, options: companyOptions}
     ];
 
-    async function onSubmit(state) {
+    async function onSubmit(data) {
         setLoading(true);
 
         try {
 
-            let response = await api.registerEmployee(state);
+            let response = await api.registerEmployee(data);
             setLoading(false);
             Alert.alert(
                 'Employee will receive email shortly',
