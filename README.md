@@ -94,14 +94,6 @@ Our server side code uses the following [NPM Packages](https://www.npmjs.com/)/d
   Our database is buit using mongodb. 
 
 ------------------------------------------
-## Future Development
-
-* Employer View - allowing employers to add employees, and then employees only have the ability to see/rate who they work with. 
-
-* Comments with ratings - allowable users to submit comments with their ratings that the person being rated can see. 
-
-* Profile picutre implmentation using Cloudinary.
-
 
 ## To Get Started 
 
